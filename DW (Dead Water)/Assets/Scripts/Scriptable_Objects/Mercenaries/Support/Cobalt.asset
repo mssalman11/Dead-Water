@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f41147183a5bf6429fc5dd863de626c, type: 3}
-  m_Name: TestMerc
+  m_Name: Cobalt
   m_EditorClassIdentifier: 
-  name: 
-  description: Test Merc for testing values
-  type1: 0
-  MaxHp: 20
-  Attack: 5
-  AttackSpeed: 0.5
+  name: Cobalt
+  description: Provides support by specializing in healing
+  characterModel: {fileID: 0}
+  type1: 3
+  maxHp: 0
+  attack: 0
+  attackSpeed: 0
+  healAmount: 0
+  healRate: 0
