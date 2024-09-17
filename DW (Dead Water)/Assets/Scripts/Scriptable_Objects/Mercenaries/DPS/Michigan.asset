@@ -16,8 +16,8 @@ MonoBehaviour:
   description: low constant damage DPS
   characterModel: {fileID: 0}
   type1: 1
-  maxHp: 0
-  attack: 0
-  attackSpeed: 0
+  maxHp: 20
+  attack: 3
+  attackSpeed: 0.5
   healAmount: 0
   healRate: 0

@@ -16,8 +16,8 @@ MonoBehaviour:
   description: high slow damage DPS
   characterModel: {fileID: 0}
   type1: 1
-  maxHp: 0
-  attack: 0
-  attackSpeed: 0
+  maxHp: 14
+  attack: 8
+  attackSpeed: 1
   healAmount: 0
   healRate: 0

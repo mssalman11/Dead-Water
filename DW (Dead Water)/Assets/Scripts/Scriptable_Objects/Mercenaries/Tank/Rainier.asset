@@ -16,8 +16,8 @@ MonoBehaviour:
   description: balanced tank with mediocre damage output
   characterModel: {fileID: 0}
   type1: 2
-  maxHp: 0
-  attack: 0
-  attackSpeed: 0
+  maxHp: 20
+  attack: 3
+  attackSpeed: 0.5
   healAmount: 0
   healRate: 0
