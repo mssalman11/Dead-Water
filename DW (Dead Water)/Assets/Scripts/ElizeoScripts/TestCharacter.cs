@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class TestCharacter : MonoBehaviour
+/* [Nava, Elizeo]
+ * [September 19, 2024]
+ * [This is a test script for the character, IGNORE.]
+ */
+[System.Serializable]
+public class TestCharacter
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string name;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float baseHP;
+    public float currentMP;
+
+    public int testStat;
 }
