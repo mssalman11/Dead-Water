@@ -36,7 +36,7 @@ public class EnemyGenerator : MonoBehaviour
             for (int j = 0; j < enemies.Length; j++) {
                 int rand = Random.Range(0, enemies.Length);
                 Instantiate(enemies[i], Tiles[i].transform.position, Quaternion.identity);
-                //enemies[i] += enemiesList[j];
+                enemiesList[j] = enemies[i];
             }
         }
     }
