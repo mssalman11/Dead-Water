@@ -16,8 +16,8 @@ MonoBehaviour:
   description: mid road DPS
   characterModel: {fileID: 0}
   type1: 1
-  maxHp: 0
-  attack: 0
-  attackSpeed: 0
+  maxHp: 18
+  attack: 5
+  attackSpeed: 0.7
   healAmount: 0
   healRate: 0

@@ -16,8 +16,8 @@ MonoBehaviour:
   description: low damage meatshield tank
   characterModel: {fileID: 0}
   type1: 2
-  maxHp: 0
-  attack: 0
-  attackSpeed: 0
+  maxHp: 25
+  attack: 3
+  attackSpeed: 0.7
   healAmount: 0
   healRate: 0
