@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 /*
@@ -15,13 +16,21 @@ public class DragDropScript : MonoBehaviour , IBeginDragHandler, IDragHandler, I
     //Make sure IDragHandler is active above if using drag 
 
     //Return point if card is dragged to an invalid location
-    Transform returnPoint = null;
+    public Transform returnPoint = null;
+
+    //SAVE BELOW CODE FOR GEAR EQUIPPING LOGIC
+    public enum Slot { rightSide, center, leftSide };
+    public Slot teamPos = Slot.leftSide;
+    //END OF POSSIBLE GEAR EQUIP LOGIC
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         //Debug.Log("OnBeginDrag activated");
         returnPoint = this.transform.parent;
-        this.transform.SetParent(this.transform.parent.parent);
+        this.transform.SetParent(this.transform.root);
+        this.transform.SetAsLastSibling();
+
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -33,5 +42,6 @@ public class DragDropScript : MonoBehaviour , IBeginDragHandler, IDragHandler, I
     {
         //Debug.Log("OnEndDrag activated");
         this.transform.SetParent(returnPoint);
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 }

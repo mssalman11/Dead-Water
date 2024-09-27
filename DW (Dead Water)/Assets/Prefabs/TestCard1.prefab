@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 3123803581045266362}
   - component: {fileID: 9036794631564703534}
   - component: {fileID: -1897910481527801614}
+  - component: {fileID: -1097292193832486795}
   m_Layer: 5
   m_Name: TestCard1
   m_TagString: Untagged
@@ -190,6 +191,18 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: 1
   m_LayoutPriority: 1
+--- !u!225 &-1097292193832486795
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821325444877822070}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5078132080903049034
 GameObject:
   m_ObjectHideFlags: 0
