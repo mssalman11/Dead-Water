@@ -52,7 +52,7 @@ public class BattleSystem : MonoBehaviour
         
         GameObject charGO = Instantiate(playerPrefab, playerBattlePos);
         charUnit = charGO.GetComponent<TestUnit>();
-
+        
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos);
         enemyUnit = enemyGO.GetComponent<TestUnit>();
 
