@@ -25,7 +25,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject enemyPrefab;
 
     public Transform playerBattlePos;
-    public Transform enemyBattlePos;
+    public GameObject enemyBattlePos;
 
     /* TestUnits are a placeholder for Leland's character data codes*/
     public TestUnit charUnit;
@@ -50,10 +50,10 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator SetupBattle() //was originally a void function used to test the dialouge and HUD.
     {
         
-        GameObject charGO = Instantiate(playerPrefab, playerBattlePos);
+        GameObject charGO = Instantiate(playerPrefab, playerBattlePos.transform.position, Quaternion.identity);
         charUnit = charGO.GetComponent<TestUnit>();
         
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos);
+        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<TestUnit>();
 
         dialougeText.text = enemyUnit.unitName + " has appeared!";

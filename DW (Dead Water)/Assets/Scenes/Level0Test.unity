@@ -1449,6 +1449,7 @@ GameObject:
   - component: {fileID: 610606973}
   - component: {fileID: 610606972}
   - component: {fileID: 610606976}
+  - component: {fileID: 610606977}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -1571,6 +1572,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &610606977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610606971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e84dbaaef1c584a9c9d517a2401199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Some Guy
+  level: 22
+  damage: 6
+  maxHP: 22
+  currentHP: 22
 --- !u!1 &638480050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,7 +1816,6 @@ Transform:
   m_LocalScale: {x: 0.05, y: 1, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1595761404}
   - {fileID: 1967654244}
   m_Father: {fileID: 515906578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2822,12 +2839,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626ee9005dad49047be5f40fb31a1829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 3321349165667352159, guid: 563096a05b43b914b892aeb2875dca45,
-    type: 3}
-  enemyPrefab: {fileID: 2113570738556007113, guid: 5877bc14895ce4d48960f965528de640,
+  playerPrefab: {fileID: 610606971}
+  enemyPrefab: {fileID: 1075887004742393738, guid: 6d62e26716a719640bb6235d48e0fc9d,
     type: 3}
   playerBattlePos: {fileID: 1967654244}
-  enemyBattlePos: {fileID: 1595761404}
+  enemyBattlePos: {fileID: 1595761403}
   charUnit: {fileID: 0}
   enemyUnit: {fileID: 0}
   dialougeText: {fileID: 99637073}
@@ -3047,11 +3063,11 @@ Transform:
   m_GameObject: {fileID: 1595761403}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.39999998, z: 8.160001}
+  m_LocalPosition: {x: 0, y: 0.5, z: 29.159996}
   m_LocalScale: {x: 20, y: 1, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 807928996}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660193578
 GameObject:
@@ -3768,3 +3784,4 @@ SceneRoots:
   - {fileID: 1444857122}
   - {fileID: 1881422839}
   - {fileID: 1873714819}
+  - {fileID: 1595761404}
