@@ -38,6 +38,7 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -138,7 +139,8 @@ public class BattleSystem : MonoBehaviour
         else
         {
             state = BattleState.PLAYERTURN;
-            PlayerTurn();
+            //PlayerTurn(); original line.
+            StartCoroutine(PlayerAttack()); //Battle system should be automatic thanks to this change of code.
         }
     }
 
