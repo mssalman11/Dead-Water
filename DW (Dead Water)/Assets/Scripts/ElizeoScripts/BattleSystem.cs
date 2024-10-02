@@ -85,6 +85,7 @@ public class BattleSystem : MonoBehaviour
             // The Battle Ends
             state = BattleState.WON;
             EndBattle();
+            StartCoroutine(NextBattle());
         }
         else
         {
@@ -135,6 +136,7 @@ public class BattleSystem : MonoBehaviour
         if(isDead)
         {
             state = BattleState.LOST;
+            EndBattle();
         }
         else
         {
@@ -142,6 +144,25 @@ public class BattleSystem : MonoBehaviour
             //PlayerTurn(); original line.
             StartCoroutine(PlayerAttack()); //Battle system should be automatic thanks to this change of code.
         }
+    }
+
+    public IEnumerator NextBattle()
+    {
+        
+        yield return new WaitForSeconds(2f);
+
+        dialougeText.text = "Incoming next battle";
+
+        yield return new WaitForSeconds(4f);
+
+        playerHUD.SetHP(charUnit.currentHP);
+        enemyHUD.SetHP(enemyUnit.currentHP);
+
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
+        charUnit.currentHP = 11;
+        enemyUnit.currentHP = 22;
+
     }
 
     public void PlayerTurn()
