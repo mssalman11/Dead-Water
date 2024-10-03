@@ -11,6 +11,7 @@ public class BattleHUD : MonoBehaviour
     public Text nameText;
     public Text levelText;
     public Slider hpSlider;
+    public Text goldText;
 
     public void SetHUD(TestUnit unit)
     {
@@ -18,10 +19,12 @@ public class BattleHUD : MonoBehaviour
         levelText.text = "Lvl: " + unit.level;
         hpSlider.maxValue = unit.maxHP;
         hpSlider.value = unit.currentHP;
+        goldText.text = "Gold: " + unit.currentGold.ToString();
     }
 
     public void SetHP(int hp)
     {
         hpSlider.value = hp;
     }
+
 }

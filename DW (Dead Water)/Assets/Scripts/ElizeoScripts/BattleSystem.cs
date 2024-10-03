@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.PlasticSCM.Editor.WebApi;
 
 /*[Nava, Elizeo]
  *[September 24, 2024]
@@ -149,6 +150,11 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator NextBattle()
     {
         
+        yield return new WaitForSeconds(2f);
+
+        charUnit.GetGold(charUnit.goldRange);
+        dialougeText.text = charUnit.name + " has earned " + charUnit.goldRange + " Gold!";
+
         yield return new WaitForSeconds(2f);
 
         dialougeText.text = "Incoming next battle";

@@ -15,6 +15,13 @@ public class TestUnit : MonoBehaviour
     public int maxHP;
     public int currentHP;
 
+    public int currentGold;
+    public int goldRange;
+
+    public void Start()
+    {
+        goldRange = Random.Range(10, 20);
+    }
     //This function will make sure that any enemy unit takes damage. Needed for the attack function for BattleSystem.
     public bool takeDamage(int dmg)
     {
@@ -37,5 +44,10 @@ public class TestUnit : MonoBehaviour
         {
             currentHP = maxHP;
         }
+    }
+
+    public void GetGold (int amount)
+    {
+        currentGold += amount;
     }
 }
