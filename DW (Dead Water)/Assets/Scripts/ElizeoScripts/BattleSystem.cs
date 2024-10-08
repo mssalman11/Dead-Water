@@ -25,6 +25,9 @@ public class BattleSystem : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
 
+    public List<GameObject> enemyObjs;
+    public List<GameObject> playerObjs;
+
     public Transform playerBattlePos;
     public Transform enemyBattlePos;
 
@@ -154,6 +157,7 @@ public class BattleSystem : MonoBehaviour
 
         charUnit.GetGold(charUnit.goldRange);
         dialougeText.text = charUnit.name + " has earned " + charUnit.goldRange + " Gold!";
+        playerHUD.goldText.text = "Gold: " + charUnit.currentGold.ToString();
 
         yield return new WaitForSeconds(2f);
 
@@ -165,10 +169,14 @@ public class BattleSystem : MonoBehaviour
         enemyHUD.SetHP(enemyUnit.currentHP);
 
         state = BattleState.PLAYERTURN;
-        PlayerTurn();
-        charUnit.currentHP = 11;
+        dialougeText.text = "Starting Battle..";
+        charUnit.currentHP = 22; //11;
         enemyUnit.currentHP = 22;
 
+        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(PlayerAttack());
+        
     }
 
     public void PlayerTurn()

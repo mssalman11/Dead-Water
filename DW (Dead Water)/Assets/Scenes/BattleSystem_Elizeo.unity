@@ -1552,6 +1552,8 @@ MonoBehaviour:
     type: 3}
   enemyPrefab: {fileID: 2113570738556007113, guid: 5877bc14895ce4d48960f965528de640,
     type: 3}
+  enemyObjs: []
+  playerObjs: []
   playerBattlePos: {fileID: 1581273501}
   enemyBattlePos: {fileID: 518227939}
   charUnit: {fileID: 0}
