@@ -165,13 +165,15 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(4f);
 
+        charUnit.currentHP = 22; //11;
+        enemyUnit.currentHP = 22;
+
         playerHUD.SetHP(charUnit.currentHP);
         enemyHUD.SetHP(enemyUnit.currentHP);
 
         state = BattleState.PLAYERTURN;
         dialougeText.text = "Starting Battle..";
-        charUnit.currentHP = 22; //11;
-        enemyUnit.currentHP = 22;
+
 
         yield return new WaitForSeconds(2f);
 
