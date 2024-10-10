@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class MoveLevel : MonoBehaviour
 {
+
+    private void Update()
+    {
+        transform.position += new Vector3(0, 0, -2) * Time.deltaTime;
+    }
+
+
+
+
+    /*
     [SerializeField]
     private ColliderTrigger Ctrigger;
     [SerializeField]
@@ -32,4 +42,5 @@ public class MoveLevel : MonoBehaviour
         }
         
     }
+    */
 }
