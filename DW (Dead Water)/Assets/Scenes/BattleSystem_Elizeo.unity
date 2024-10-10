@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 642647035}
   - component: {fileID: 642647034}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: BattleCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1548,14 +1548,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626ee9005dad49047be5f40fb31a1829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleUI: {fileID: 642647033}
   playerPrefab: {fileID: 3321349165667352159, guid: 563096a05b43b914b892aeb2875dca45,
     type: 3}
   enemyPrefab: {fileID: 2113570738556007113, guid: 5877bc14895ce4d48960f965528de640,
     type: 3}
-  enemyObjs: []
-  playerObjs: []
+  incomingBattle: 0
   playerBattlePos: {fileID: 1581273501}
-  enemyBattlePos: {fileID: 518227939}
+  enemyBattlePos: {fileID: 518227938}
   charUnit: {fileID: 0}
   enemyUnit: {fileID: 0}
   dialougeText: {fileID: 279397348}

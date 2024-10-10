@@ -19,11 +19,14 @@ public enum BattleState
     WON,
     LOST
 }
+
 public class BattleSystem : MonoBehaviour
 {
-
+    public GameObject battleUI;
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
+
+    public bool incomingBattle;
 
  //   public List<GameObject> enemyObjs;
  //   public List<GameObject> playerObjs;
@@ -48,6 +51,26 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.START;
         StartCoroutine(SetupBattle());
+    }
+
+    private void Update()
+    {
+        startAnotherBattle();
+    }
+
+    public void startAnotherBattle()
+    {
+        if (incomingBattle == true)
+        {
+            battleUI.SetActive(false);
+            state = BattleState.START;
+        }
+        if (incomingBattle == false)
+        {
+
+            battleUI.SetActive(true);
+
+        }
     }
 
     /* This is meant to set up enemies and characters in the battle system
@@ -160,25 +183,26 @@ public class BattleSystem : MonoBehaviour
         playerHUD.goldText.text = "Gold: " + charUnit.currentGold.ToString();
 
         yield return new WaitForSeconds(2f);
+        incomingBattle = true;
+        //dialougeText.text = "Incoming next battle";
 
-        dialougeText.text = "Incoming next battle";
+        //yield return new WaitForSeconds(4f);
 
-        yield return new WaitForSeconds(4f);
-
-        charUnit.currentHP = 22; //11;
+       // charUnit.currentHP = 22; //11;
         enemyUnit.currentHP = 22;
 
         playerHUD.SetHP(charUnit.currentHP);
         enemyHUD.SetHP(enemyUnit.currentHP);
 
         state = BattleState.PLAYERTURN;
-        dialougeText.text = "Starting Battle..";
+        PlayerTurn();
+        //  dialougeText.text = "Starting Battle..";
 
 
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
 
-        StartCoroutine(PlayerAttack());
-        
+        //StartCoroutine(PlayerAttack());
+
     }
 
     public void PlayerTurn()
