@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.PlasticSCM.Editor.WebApi;
 
 /*[Nava, Elizeo]
  *[September 24, 2024]
@@ -24,6 +25,9 @@ public class BattleSystem : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
 
+ //   public List<GameObject> enemyObjs;
+ //   public List<GameObject> playerObjs;
+
     public Transform playerBattlePos;
     public GameObject enemyBattlePos;
 
@@ -38,6 +42,7 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +89,7 @@ public class BattleSystem : MonoBehaviour
             // The Battle Ends
             state = BattleState.WON;
             EndBattle();
+            StartCoroutine(NextBattle());
         }
         else
         {
@@ -134,12 +140,45 @@ public class BattleSystem : MonoBehaviour
         if(isDead)
         {
             state = BattleState.LOST;
+            EndBattle();
         }
         else
         {
             state = BattleState.PLAYERTURN;
-            PlayerTurn();
+            //PlayerTurn(); original line.
+            StartCoroutine(PlayerAttack()); //Battle system should be automatic thanks to this change of code.
         }
+    }
+
+    public IEnumerator NextBattle()
+    {
+        
+        yield return new WaitForSeconds(2f);
+
+        charUnit.GetGold(charUnit.goldRange);
+        dialougeText.text = charUnit.name + " has earned " + charUnit.goldRange + " Gold!";
+        playerHUD.goldText.text = "Gold: " + charUnit.currentGold.ToString();
+
+        yield return new WaitForSeconds(2f);
+
+        dialougeText.text = "Incoming next battle";
+
+        yield return new WaitForSeconds(4f);
+
+        charUnit.currentHP = 22; //11;
+        enemyUnit.currentHP = 22;
+
+        playerHUD.SetHP(charUnit.currentHP);
+        enemyHUD.SetHP(enemyUnit.currentHP);
+
+        state = BattleState.PLAYERTURN;
+        dialougeText.text = "Starting Battle..";
+
+
+        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(PlayerAttack());
+        
     }
 
     public void PlayerTurn()
