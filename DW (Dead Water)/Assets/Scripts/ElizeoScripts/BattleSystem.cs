@@ -25,8 +25,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
 
-    public List<GameObject> enemyObjs;
-    public List<GameObject> playerObjs;
+ //   public List<GameObject> enemyObjs;
+ //   public List<GameObject> playerObjs;
 
     public Transform playerBattlePos;
     public Transform enemyBattlePos;
