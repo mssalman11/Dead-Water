@@ -25,6 +25,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject battleUI;
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
+    public GameObject triggerTest;
 
     public bool incomingBattle;
 
@@ -51,6 +52,7 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.START;
         StartCoroutine(SetupBattle());
+        incomingBattle = false;
     }
 
     private void Update()
@@ -63,13 +65,13 @@ public class BattleSystem : MonoBehaviour
         if (incomingBattle == true)
         {
             battleUI.SetActive(false);
-            state = BattleState.START;
+          //  state = BattleState.START;
         }
         if (incomingBattle == false)
         {
 
             battleUI.SetActive(true);
-
+            triggerTest.SetActive(false);
         }
     }
 
@@ -95,6 +97,21 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
+    public IEnumerator SetupAnotherBattle()
+    {
+        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos.transform.position, Quaternion.identity);
+        enemyUnit = enemyGO.GetComponent<TestUnit>();
+
+        dialougeText.text = "Another " + enemyUnit.unitName + " has appeared!";
+
+        playerHUD.SetHUD(charUnit);
+        enemyHUD.SetHUD(enemyUnit);
+
+        yield return new WaitForSeconds(2);
+
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
+    }
     public IEnumerator PlayerAttack()
     {
         //Damages Enemy
@@ -112,6 +129,7 @@ public class BattleSystem : MonoBehaviour
             // The Battle Ends
             state = BattleState.WON;
             EndBattle();
+            enemyUnit.unitDie();
             StartCoroutine(NextBattle());
         }
         else
@@ -184,18 +202,19 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         incomingBattle = true;
+        triggerTest.SetActive(true);
         //dialougeText.text = "Incoming next battle";
 
         //yield return new WaitForSeconds(4f);
 
-       // charUnit.currentHP = 22; //11;
+        // charUnit.currentHP = 22; //11;
         enemyUnit.currentHP = 22;
 
         playerHUD.SetHP(charUnit.currentHP);
         enemyHUD.SetHP(enemyUnit.currentHP);
 
-        state = BattleState.PLAYERTURN;
-        PlayerTurn();
+       // state = BattleState.PLAYERTURN;
+       // PlayerTurn();
         //  dialougeText.text = "Starting Battle..";
 
 
@@ -227,5 +246,11 @@ public class BattleSystem : MonoBehaviour
         }
         StartCoroutine(PlayerHeal());
             
+    }
+
+    public void OnTriggerButton()
+    {
+        incomingBattle = false;
+        StartCoroutine(SetupAnotherBattle());
     }
 }

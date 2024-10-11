@@ -50,4 +50,12 @@ public class TestUnit : MonoBehaviour
     {
         currentGold += amount;
     }
+
+    public void unitDie()
+    {
+        if (currentHP <= 0 )
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
