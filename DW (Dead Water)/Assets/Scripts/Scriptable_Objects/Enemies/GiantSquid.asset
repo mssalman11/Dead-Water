@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f8cb271e90b8d4d9903001b4f07c37, type: 3}
   m_Name: GiantSquid
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  maxHp: 0
-  attack: 0
-  attackSpeed: 0
-  gold: 0
-  xp: 0
+  name: Giant Squid
+  description: A giant aggressive squid
+  maxHp: 12
+  attack: 6
+  attackSpeed: 1
+  gold: 3
+  xp: 8
