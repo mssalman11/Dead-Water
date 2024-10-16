@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
+//using Unity.PlasticSCM.Editor.WebApi; <- For some reason, this was added. Had to contain this because it was causing an error.
 
 /*[Nava, Elizeo]
  *[September 24, 2024]
