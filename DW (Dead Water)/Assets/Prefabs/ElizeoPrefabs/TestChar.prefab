@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2935969762309664063}
   - component: {fileID: 779819717003735196}
   - component: {fileID: 8754643454410923859}
-  - component: {fileID: 5820434719319999159}
+  - component: {fileID: 4814115621349687693}
   m_Layer: 0
   m_Name: TestChar
   m_TagString: Character
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5820434719319999159
+--- !u!114 &4814115621349687693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,11 +117,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3321349165667352159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e84dbaaef1c584a9c9d517a2401199, type: 3}
+  m_Script: {fileID: 11500000, guid: c7fd12f2e36fa8c4ca54b481c6b1234b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Some Guy
-  level: 22
-  damage: 6
-  maxHP: 22
-  currentHP: 22
+  charStat: {fileID: 11400000, guid: 3e00ba4349006464f964dc463536ecc2, type: 2}
+  unitName: 
+  level: 1
+  damage: 0
+  priority: 0
+  maxHP: 0
+  currentHP: 0
+  currentGold: 0
+  goldRange: 0

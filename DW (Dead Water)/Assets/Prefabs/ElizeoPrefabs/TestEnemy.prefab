@@ -122,6 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Other Guy
   level: 22
-  damage: 6
+  damage: 1
   maxHP: 22
-  currentHP: 22
+  currentHP: 0
+  currentGold: 0
+  goldRange: 0

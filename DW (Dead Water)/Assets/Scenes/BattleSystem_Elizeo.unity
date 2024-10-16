@@ -739,15 +739,15 @@ RectTransform:
   m_GameObject: {fileID: 578114174}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.19229276, y: 0.6435463, z: 2.0782}
+  m_LocalScale: {x: 3.1804776, y: 3.1804776, z: 3.1804776}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1889975921}
-  m_Father: {fileID: 1062524484}
+  m_Father: {fileID: 642647037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.140076, y: -479.83716}
+  m_AnchoredPosition: {x: 164, y: -811}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &578114176
@@ -862,7 +862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &593374202
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1109,6 +1109,7 @@ RectTransform:
   m_Children:
   - {fileID: 1837175608}
   - {fileID: 1062524484}
+  - {fileID: 578114175}
   - {fileID: 1645137054}
   - {fileID: 593374202}
   m_Father: {fileID: 0}
@@ -1871,7 +1872,7 @@ MonoBehaviour:
   incomingBattle: 0
   playerBattlePos: {fileID: 1581273501}
   enemyBattlePos: {fileID: 518227938}
-  charUnit: {fileID: 0}
+  playerUnit: {fileID: 0}
   enemyUnit: {fileID: 0}
   dialougeText: {fileID: 279397348}
   playerHUD: {fileID: 1837175611}
@@ -1911,7 +1912,6 @@ RectTransform:
   - {fileID: 1839037698}
   - {fileID: 1709600361}
   - {fileID: 1913611960}
-  - {fileID: 578114175}
   - {fileID: 1915426094}
   m_Father: {fileID: 642647037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1974,6 +1974,7 @@ MonoBehaviour:
   levelText: {fileID: 1913611961}
   hpSlider: {fileID: 1839037699}
   goldText: {fileID: 1915426095}
+  atkText: {fileID: 0}
 --- !u!1 &1214014189
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,7 +2470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1645137054
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2838,6 +2839,7 @@ MonoBehaviour:
   levelText: {fileID: 335588794}
   hpSlider: {fileID: 1816684704}
   goldText: {fileID: 826933659}
+  atkText: {fileID: 335588794}
 --- !u!1 &1839037697
 GameObject:
   m_ObjectHideFlags: 0

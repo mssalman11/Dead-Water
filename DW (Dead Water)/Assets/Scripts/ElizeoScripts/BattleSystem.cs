@@ -36,13 +36,16 @@ public class BattleSystem : MonoBehaviour
     public GameObject enemyBattlePos;
 
     /* TestUnits are a placeholder for Leland's character data codes*/
-    public TestUnit charUnit;
+    //public TestUnit charUnit;
+    public CharacterUnit playerUnit;
     public TestUnit enemyUnit;
+
 
     public Text dialougeText;
 
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
+   // public BattleHUD charHUD;
 
     public BattleState state;
 
@@ -81,15 +84,17 @@ public class BattleSystem : MonoBehaviour
     {
         
         GameObject charGO = Instantiate(playerPrefab, playerBattlePos.transform.position, Quaternion.identity);
-        charUnit = charGO.GetComponent<TestUnit>();
+        playerUnit = charGO.GetComponent<CharacterUnit>();
         
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<TestUnit>();
 
         dialougeText.text = enemyUnit.unitName + " has appeared!";
 
-        playerHUD.SetHUD(charUnit);
-        enemyHUD.SetHUD(enemyUnit);
+        playerHUD.SetCharHUD(playerUnit);
+        enemyHUD.SetEnemyHUD(enemyUnit);
+        playerHUD.SetHP(playerUnit.charStat.maxHp);
+        enemyHUD.SetHP(enemyUnit.maxHP);
 
         yield return new WaitForSeconds(2);
 
@@ -97,6 +102,7 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
+    //Use this coroutine for the on the Trigger ebnter
     public IEnumerator SetupAnotherBattle()
     {
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos.transform.position, Quaternion.identity);
@@ -104,8 +110,10 @@ public class BattleSystem : MonoBehaviour
 
         dialougeText.text = "Another " + enemyUnit.unitName + " has appeared!";
 
-        playerHUD.SetHUD(charUnit);
-        enemyHUD.SetHUD(enemyUnit);
+        playerHUD.SetCharHUD(playerUnit);
+        enemyHUD.SetEnemyHUD(enemyUnit);
+        enemyHUD.SetHP(enemyUnit.maxHP);
+        playerUnit.goldRange = Random.Range(10, 20);
 
         yield return new WaitForSeconds(2);
 
@@ -115,10 +123,10 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator PlayerAttack()
     {
         //Damages Enemy
-        bool isDead = enemyUnit.takeDamage(charUnit.damage);
+        bool isDead = enemyUnit.takeDamage(playerUnit.damage);
 
         enemyHUD.SetHP(enemyUnit.currentHP);
-        dialougeText.text = charUnit.name + " has attacked!";
+        dialougeText.text = playerUnit.unitName + " has attacked!";
 
         //Time of Attack
         yield return new WaitForSeconds(2f);
@@ -156,10 +164,10 @@ public class BattleSystem : MonoBehaviour
     //The healing function is added in for in case we ever implement healing items in the future.
     public IEnumerator PlayerHeal()
     {
-        charUnit.Heal(5);
+        playerUnit.Heal(5);
 
-        playerHUD.SetHP(charUnit.currentHP);
-        dialougeText.text = charUnit.name + " has been healed!";
+        playerHUD.SetHP(playerUnit.currentHP);
+        dialougeText.text = playerUnit.name + " has been healed!";
 
         yield return new WaitForSeconds(2f);
         state = BattleState.ENEMYTURN;
@@ -168,13 +176,13 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator EnemyTurn()
     {
-        dialougeText.text = enemyUnit.name + " is Attacking!";
+        dialougeText.text = enemyUnit.unitName + " is Attacking!";
 
         yield return new WaitForSeconds(1f);
 
-        bool isDead = charUnit.takeDamage(enemyUnit.damage);
+        bool isDead = playerUnit.takeDamage(enemyUnit.damage);
 
-        playerHUD.SetHP(charUnit.currentHP);
+        playerHUD.SetHP(playerUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
 
@@ -196,9 +204,9 @@ public class BattleSystem : MonoBehaviour
         
         yield return new WaitForSeconds(2f);
 
-        charUnit.GetGold(charUnit.goldRange);
-        dialougeText.text = charUnit.name + " has earned " + charUnit.goldRange + " Gold!";
-        playerHUD.goldText.text = "Gold: " + charUnit.currentGold.ToString();
+        playerUnit.GetGold(playerUnit.goldRange);
+        dialougeText.text = playerUnit.name + " has earned " + playerUnit.goldRange + " Gold!";
+        playerHUD.goldText.text = "Gold: " + playerUnit.currentGold.ToString();
 
         yield return new WaitForSeconds(2f);
         incomingBattle = true;
@@ -210,7 +218,7 @@ public class BattleSystem : MonoBehaviour
         // charUnit.currentHP = 22; //11;
         enemyUnit.currentHP = 22;
 
-        playerHUD.SetHP(charUnit.currentHP);
+        playerHUD.SetHP(playerUnit.currentHP);
         enemyHUD.SetHP(enemyUnit.currentHP);
 
        // state = BattleState.PLAYERTURN;
@@ -235,7 +243,8 @@ public class BattleSystem : MonoBehaviour
         {
             return;
         }
-        StartCoroutine(PlayerAttack());
+            StartCoroutine(PlayerAttack());
+
     }
 
     public void OnHealButton()
