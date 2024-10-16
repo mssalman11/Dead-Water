@@ -23,13 +23,13 @@ public class BattleHUD : MonoBehaviour
         goldText.text = "Gold: " + unit.currentGold;
     }
 
-    public void SetEnemyHUD(TestUnit unit)
+    public void SetEnemyHUD(EnemyUnit unit)
     {
-        nameText.text = unit.unitName;
+        nameText.text = unit.enemyStat.name;
         levelText.text = "Lvl: " + unit.level;
-        hpSlider.maxValue = unit.maxHP;
+        hpSlider.maxValue = unit.enemyStat.maxHp ;
         hpSlider.value = unit.currentHP;
-        goldText.text = "Gold: " + unit.currentGold;
+      //  goldText.text = "Gold: " + unit.currentGold;
     }
 
     public void SetHP(int hp)

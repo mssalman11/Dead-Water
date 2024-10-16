@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8754643454410923859}
   - component: {fileID: 4814115621349687693}
   m_Layer: 0
-  m_Name: TestChar
+  m_Name: Michigan
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fd12f2e36fa8c4ca54b481c6b1234b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charStat: {fileID: 11400000, guid: 3e00ba4349006464f964dc463536ecc2, type: 2}
+  charStat: {fileID: 11400000, guid: b8cbcbc8887e5174d9ed8e411d27b2e5, type: 2}
   unitName: 
   level: 1
   damage: 0

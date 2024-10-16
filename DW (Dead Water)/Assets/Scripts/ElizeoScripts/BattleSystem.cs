@@ -38,7 +38,8 @@ public class BattleSystem : MonoBehaviour
     /* TestUnits are a placeholder for Leland's character data codes*/
     //public TestUnit charUnit;
     public CharacterUnit playerUnit;
-    public TestUnit enemyUnit;
+    public EnemyUnit enemyUnit;
+    //public TestUnit enemyUnit;
 
 
     public Text dialougeText;
@@ -87,14 +88,14 @@ public class BattleSystem : MonoBehaviour
         playerUnit = charGO.GetComponent<CharacterUnit>();
         
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos.transform.position, Quaternion.identity);
-        enemyUnit = enemyGO.GetComponent<TestUnit>();
+        enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 
-        dialougeText.text = enemyUnit.unitName + " has appeared!";
+        dialougeText.text = enemyUnit.enemyStat.name + " has appeared!";
 
         playerHUD.SetCharHUD(playerUnit);
         enemyHUD.SetEnemyHUD(enemyUnit);
         playerHUD.SetHP(playerUnit.charStat.maxHp);
-        enemyHUD.SetHP(enemyUnit.maxHP);
+        enemyHUD.SetHP(enemyUnit.enemyStat.maxHp) ;
 
         yield return new WaitForSeconds(2);
 
@@ -106,13 +107,13 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator SetupAnotherBattle()
     {
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos.transform.position, Quaternion.identity);
-        enemyUnit = enemyGO.GetComponent<TestUnit>();
+        enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 
-        dialougeText.text = "Another " + enemyUnit.unitName + " has appeared!";
+        dialougeText.text = "Another " + enemyUnit.enemyStat.name + " has appeared!";
 
         playerHUD.SetCharHUD(playerUnit);
         enemyHUD.SetEnemyHUD(enemyUnit);
-        enemyHUD.SetHP(enemyUnit.maxHP);
+        enemyHUD.SetHP(enemyUnit.enemyStat.maxHp);
         playerUnit.goldRange = Random.Range(10, 20);
 
         yield return new WaitForSeconds(2);
@@ -176,7 +177,7 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator EnemyTurn()
     {
-        dialougeText.text = enemyUnit.unitName + " is Attacking!";
+        dialougeText.text = enemyUnit.enemyStat.name + " is Attacking!";
 
         yield return new WaitForSeconds(1f);
 
@@ -204,8 +205,8 @@ public class BattleSystem : MonoBehaviour
         
         yield return new WaitForSeconds(2f);
 
-        playerUnit.GetGold(playerUnit.goldRange);
-        dialougeText.text = playerUnit.name + " has earned " + playerUnit.goldRange + " Gold!";
+        playerUnit.GetGold(enemyUnit.goldRange);
+        dialougeText.text = playerUnit.unitName + " has earned " + enemyUnit.goldRange + " Gold!";
         playerHUD.goldText.text = "Gold: " + playerUnit.currentGold.ToString();
 
         yield return new WaitForSeconds(2f);

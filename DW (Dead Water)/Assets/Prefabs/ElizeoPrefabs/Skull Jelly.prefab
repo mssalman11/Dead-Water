@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5281802511600342204}
   - component: {fileID: 3958696929226702262}
   - component: {fileID: 2542177144878465476}
-  - component: {fileID: 7695295538472909199}
+  - component: {fileID: 2447370402675342619}
   m_Layer: 0
-  m_Name: TestEnemy
+  m_Name: Skull Jelly
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7695295538472909199
+--- !u!114 &2447370402675342619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,13 +117,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113570738556007113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e84dbaaef1c584a9c9d517a2401199, type: 3}
+  m_Script: {fileID: 11500000, guid: d292cfef479998a46a60536196b8a081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Other Guy
-  level: 22
-  damage: 1
-  maxHP: 22
+  enemyStat: {fileID: 11400000, guid: 2d3b5f1c342f6634db811e4d13a5a5c8, type: 2}
+  unitName: 
+  level: 1
+  damage: 0
+  priority: 0
+  maxHP: 0
   currentHP: 0
   currentGold: 0
   goldRange: 0
