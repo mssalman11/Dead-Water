@@ -5,8 +5,8 @@ using UnityEngine;
 //Created: 10/7/24
 //Purpose: Controls item's equip regions and stats. 
 
-//Slot Tags
-public enum slotTag { Default, Attack, Armor, Wild}
+//Slot Tags (obsolete)
+//public enum slotTag { Default, Attack, Armor, Wild}
 
 public class ItemScript : MonoBehaviour
 {
@@ -25,6 +25,8 @@ public class ItemScript : MonoBehaviour
 
     private InventoryManager inventoryManager;
 
+    public ItemType itemType;
+
     void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
@@ -32,6 +34,6 @@ public class ItemScript : MonoBehaviour
 
     public void GiveItem()
     {
-        inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+        inventoryManager.AddItem(itemName, quantity, sprite, itemDescription, itemType);
     }
 }

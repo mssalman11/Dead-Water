@@ -1,45 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-/*
- * Author: Leland LeVassar
- * Created 10/6/24
- * Purpose: To control logic for the gear equipping based on item type
- */
+//Author: Leland LeVassar, with help from Night Run tutorial
+//Date created: 10/7/24
+//Purpose: To take in information about equipment and pass it on to the character stats
 
-public class EquipmentSlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class EquipmentSlotScript : MonoBehaviour
 {
-    //IPointerHandlers are required for this to work. Make sure their associated functions are in the script.
+    //Slot appearance
+    [SerializeField]
+    private Image slotImage;
 
-    public EquipmentDragScript.Slot ItemType = EquipmentDragScript.Slot.attackSlot;
+    [SerializeField]
+    private Text slotName;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    //Slot Data
+    [SerializeField]
+    private ItemType itemType = new ItemType();
+
+    private Sprite itemSprite;
+    private string itemName;
+    private string itemDescription;
+
+    private bool slotInUse;
+
+    //Equipping gear logic
+    public void EquipGear(Sprite itemSprite, string itemName, string itemDescription)
     {
+        //Update Image
+        this.itemSprite = itemSprite;
+        slotImage.sprite = this.itemSprite;
 
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
+        //Update Item Data
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
 
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
-
-        EquipmentDragScript drag = eventData.pointerDrag.GetComponent<EquipmentDragScript>();
-        if (drag != null)
-        {
-            //Makes sure more than one item can't be put in slot
-            if (transform.childCount == 0)
-            {
-                GameObject dropped = eventData.pointerDrag;
-                EquipmentDragScript draggableItem = dropped.GetComponent<EquipmentDragScript>();
-                draggableItem.returnPoint = transform;
-            }
-            //Restricting non wildcard items to their respective slots.
-            
-        }
+        slotInUse = true;
     }
 }

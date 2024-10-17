@@ -27,10 +27,15 @@ public class InventorySlotScript : MonoBehaviour, IPointerClickHandler
     public Image itemDescriptionImage;
     public Text ItemDescriptionNameText;
     public Text ItemDescriptionText;
+    public ItemType itemType;
 
     //Selection graphics variables
     public GameObject selectedShader;
     public bool thisItemSelected;
+
+    //Way for ItemSlots to talk to EquipmentSlots
+    [SerializeField]
+    private EquipmentSlotScript attackSlot, armorSlot, wildSlot;
 
     private InventoryManager inventoryManager;
 
@@ -39,8 +44,10 @@ public class InventorySlotScript : MonoBehaviour, IPointerClickHandler
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription, ItemType itemType)
     {
+        //Updates all item info
+        this.itemType = itemType;
         this.itemName = itemName;
         this.quantity = quantity;
         this.itemSprite = itemSprite;
@@ -57,6 +64,7 @@ public class InventorySlotScript : MonoBehaviour, IPointerClickHandler
         if(eventData.button == PointerEventData.InputButton.Left)
         {
             OnLeftClick();
+            EquipGear();
         }
     }
 
@@ -68,5 +76,24 @@ public class InventorySlotScript : MonoBehaviour, IPointerClickHandler
         ItemDescriptionNameText.text = itemName;
         ItemDescriptionText.text = itemDescription;
         itemDescriptionImage.sprite = itemSprite;
+    }
+
+    private void EquipGear()
+    {
+        //Logic for what to do when placing each item in its respective slot
+        if (itemType == ItemType.attack)
+        {
+            //Find a way to make this item go in wildcard slots also
+            attackSlot.EquipGear(itemSprite, itemName, itemDescription);
+        }
+        if (itemType == ItemType.armor)
+        {
+            //Find a way to make this item go in wildcard slots also
+            armorSlot.EquipGear(itemSprite, itemName, itemDescription);
+        }
+        if (itemType == ItemType.wild)
+        {
+            wildSlot.EquipGear(itemSprite, itemName, itemDescription);
+        }
     }
 }
