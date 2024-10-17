@@ -23,8 +23,10 @@ public enum BattleState
 public class BattleSystem : MonoBehaviour
 {
     public GameObject battleUI;
-    public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    //public GameObject playerPrefab;
+    //public GameObject enemy1Prefab;
+    public GameObject[] characters;
+    public GameObject[] enemies;
     public GameObject triggerTest;
 
     public bool incomingBattle;
@@ -84,10 +86,10 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator SetupBattle() //was originally a void function used to test the dialouge and HUD.
     {
         
-        GameObject charGO = Instantiate(playerPrefab, playerBattlePos.transform.position, Quaternion.identity);
+        GameObject charGO = Instantiate(characters[Random.Range(0,2)], playerBattlePos.transform.position, Quaternion.identity);
         playerUnit = charGO.GetComponent<CharacterUnit>();
         
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos.transform.position, Quaternion.identity);
+        GameObject enemyGO = Instantiate(enemies[0], enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 
         dialougeText.text = enemyUnit.enemyStat.name + " has appeared!";
@@ -103,10 +105,10 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
-    //Use this coroutine for the on the Trigger ebnter
+    //Use this coroutine for the on the Trigger enter
     public IEnumerator SetupAnotherBattle()
     {
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattlePos.transform.position, Quaternion.identity);
+        GameObject enemyGO = Instantiate(enemies[Random.Range(0,3)], enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 
         dialougeText.text = "Another " + enemyUnit.enemyStat.name + " has appeared!";
@@ -114,7 +116,62 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetCharHUD(playerUnit);
         enemyHUD.SetEnemyHUD(enemyUnit);
         enemyHUD.SetHP(enemyUnit.enemyStat.maxHp);
-        playerUnit.goldRange = Random.Range(10, 20);
+
+        yield return new WaitForSeconds(2);
+
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
+    }
+
+    //Trigger Coroutines for Specific Enemy
+
+    //Spawns a Skull Jelly
+    public IEnumerator SetupBattleWithJelly()
+    {
+        GameObject enemyGO = Instantiate(enemies[0], enemyBattlePos.transform.position, Quaternion.identity);
+        enemyUnit = enemyGO.GetComponent<EnemyUnit>();
+
+        dialougeText.text = "A " + enemyUnit.enemyStat.name + " has appeared!";
+
+        playerHUD.SetCharHUD(playerUnit);
+        enemyHUD.SetEnemyHUD(enemyUnit);
+        enemyHUD.SetHP(enemyUnit.enemyStat.maxHp);
+
+        yield return new WaitForSeconds(2);
+
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
+    }
+
+    //Spawns a Giant Snapper
+    public IEnumerator SetupBattleWithFish()
+    {
+        GameObject enemyGO = Instantiate(enemies[1], enemyBattlePos.transform.position, Quaternion.identity);
+        enemyUnit = enemyGO.GetComponent<EnemyUnit>();
+
+        dialougeText.text = "A " + enemyUnit.enemyStat.name + " has appeared!";
+
+        playerHUD.SetCharHUD(playerUnit);
+        enemyHUD.SetEnemyHUD(enemyUnit);
+        enemyHUD.SetHP(enemyUnit.enemyStat.maxHp);
+
+        yield return new WaitForSeconds(2);
+
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
+    }
+
+    //Spawns a Giant Squid
+    public IEnumerator SetupBattleWithSquid()
+    {
+        GameObject enemyGO = Instantiate(enemies[2], enemyBattlePos.transform.position, Quaternion.identity);
+        enemyUnit = enemyGO.GetComponent<EnemyUnit>();
+
+        dialougeText.text = "A " + enemyUnit.enemyStat.name + " has appeared!";
+
+        playerHUD.SetCharHUD(playerUnit);
+        enemyHUD.SetEnemyHUD(enemyUnit);
+        enemyHUD.SetHP(enemyUnit.enemyStat.maxHp);
 
         yield return new WaitForSeconds(2);
 
@@ -258,9 +315,29 @@ public class BattleSystem : MonoBehaviour
             
     }
 
+    //All used for Trigger Testing
     public void OnTriggerButton()
     {
         incomingBattle = false;
         StartCoroutine(SetupAnotherBattle());
     }
+
+    public void OnJellyButton()
+    {
+        incomingBattle = false;
+        StartCoroutine(SetupBattleWithJelly());
+    }
+
+    public void OnFishButton()
+    {
+        incomingBattle = false;
+        StartCoroutine(SetupBattleWithFish());
+    }
+
+    public void OnSquidButton()
+    {
+        incomingBattle = false;
+        StartCoroutine(SetupBattleWithSquid());
+    }
+
 }
