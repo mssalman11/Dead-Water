@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: TestWildItem
   m_EditorClassIdentifier: 
   itemName: Wild Item
-  statToChange: 3
-  amountToChangeStat: 1
+  attack: 0
+  attackSpeed: 0
+  maxHp: 0
+  healAmount: 1
+  healRate: 0

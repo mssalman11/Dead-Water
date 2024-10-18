@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: TestAttackItem
   m_EditorClassIdentifier: 
   itemName: Attack Item
-  statToChange: 1
-  amountToChangeStat: 1
+  attack: 1
+  attackSpeed: 0
+  maxHp: 0
+  healAmount: 0
+  healRate: 0

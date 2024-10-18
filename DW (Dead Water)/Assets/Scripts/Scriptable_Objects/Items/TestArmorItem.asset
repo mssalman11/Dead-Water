@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: TestArmorItem
   m_EditorClassIdentifier: 
   itemName: Armor item
-  statToChange: 2
-  amountToChangeStat: 1
+  attack: 0
+  attackSpeed: 0
+  maxHp: 5
+  healAmount: 0
+  healRate: 0

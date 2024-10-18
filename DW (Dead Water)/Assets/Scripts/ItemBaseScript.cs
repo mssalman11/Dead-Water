@@ -10,14 +10,33 @@ using UnityEngine;
 public class ItemBaseScript : ScriptableObject
 {
     public string itemName;
-    public StatToChange statToChange = new StatToChange();
-    public int amountToChangeStat;
 
-    public enum StatToChange
+    //Stat variables
+    public float attack, attackSpeed, maxHp, healAmount, healRate;
+
+    public void EquipItem()
     {
-        None,
-        attack,
-        maxHp,
-        healAmount
-    };
+        //Update stats
+        StatManagerScript statManager = GameObject.Find("StatManager").GetComponent<StatManagerScript>();
+        statManager.attack += attack;
+        //When updating rates always remember, - faster and + is slower
+        statManager.attackSpeed += attackSpeed;
+        statManager.maxHp += maxHp;
+        statManager.healAmount += healAmount;
+        //When updating rates always remember, - faster and + is slower
+        statManager.healRate += healRate;
+    }
+
+    /*
+    public void UnequipItem()
+    {
+        //Update stats
+        PlayerStats playerstats = GameObject.Find("StatManager").GetComponent<StatManagerScript>();
+        statManager.attack -= attack;
+        statManager.attackSpeed -= attackSpeed;
+        statManager.maxHp -= maxHp;
+        statManager.healAmount -= healAmount;
+        statManager.healRate -= healRate;
+    }
+    */
 }
