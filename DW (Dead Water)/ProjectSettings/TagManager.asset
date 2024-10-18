@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Character
   - NextPoint
+  - DestroyBlock
+  - StopLevel
   layers:
   - Default
   - TransparentFX

@@ -23,16 +23,11 @@ public enum BattleState
 public class BattleSystem : MonoBehaviour
 {
     public GameObject battleUI;
-    //public GameObject playerPrefab;
-    //public GameObject enemy1Prefab;
     public GameObject[] characters;
     public GameObject[] enemies;
     public GameObject triggerTest;
 
     public bool incomingBattle;
-
- //   public List<GameObject> enemyObjs;
- //   public List<GameObject> playerObjs;
 
     public Transform playerBattlePos;
     public GameObject enemyBattlePos;

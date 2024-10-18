@@ -1,14 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class MoveLevel : MonoBehaviour
 {
+    public ColliderTrigger stopBattle;
+    public bool move;
+
+    void Start()
+    {
+        move = true;
+        stopBattle.OnPlayerTriggerEnter += StopBattle_OnPlayerTriggerEnter;
+    }
+
+    private void StopBattle_OnPlayerTriggerEnter(object sender, System.EventArgs e)
+    {
+        move = false;
+    }
 
     private void Update()
     {
-        transform.position += new Vector3(0, 0, -2) * Time.deltaTime;
+        if (move == false)
+        {
+            transform.position += new Vector3(0, 0, 0) * Time.deltaTime;
+        }
+        else
+        {
+            transform.position += new Vector3(0, 0, -3) * Time.deltaTime;
+        }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("DestroyBlock"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
 
 
 

@@ -9,4 +9,14 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void LoadShop()
+    {
+        SceneManager.LoadScene("Shop");
+    }
+
+    public void LoadCharacterMenu()
+    {
+        SceneManager.LoadScene("");
+    }
 }
