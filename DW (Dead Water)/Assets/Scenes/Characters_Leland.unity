@@ -548,7 +548,8 @@ PrefabInstance:
         type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 050ad5fbd574fed48a86fa308b2d3cb9,
+        type: 3}
     - target: {fileID: -4109763729906597525, guid: 7c953528250439547ad1c7a22d9d0043,
         type: 3}
       propertyPath: itemType
@@ -659,6 +660,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestAttackItem
       objectReference: {fileID: 0}
+    - target: {fileID: 4602776474085686000, guid: 7c953528250439547ad1c7a22d9d0043,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 050ad5fbd574fed48a86fa308b2d3cb9,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2951,11 +2958,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestArmorItem
       objectReference: {fileID: 0}
+    - target: {fileID: 4083028792891970994, guid: 27a20d0b7a024d64c89cedabfea3350f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 148b1b9168b98cd459c24bd1e3b82aa5,
+        type: 3}
     - target: {fileID: 8793182368381855171, guid: 27a20d0b7a024d64c89cedabfea3350f,
         type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 148b1b9168b98cd459c24bd1e3b82aa5,
+        type: 3}
     - target: {fileID: 8793182368381855171, guid: 27a20d0b7a024d64c89cedabfea3350f,
         type: 3}
       propertyPath: itemType
@@ -5935,7 +5949,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f2b6c82cf110e64418b876a3d0eb1682, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10992,7 +11006,8 @@ PrefabInstance:
         type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 6129ae8a869aeec4683c0b3d3cca0577,
+        type: 3}
     - target: {fileID: -4151951504970674516, guid: 5df89dc0bba1c634e82edd476518525c,
         type: 3}
       propertyPath: itemType
@@ -11003,6 +11018,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestWildItem
       objectReference: {fileID: 0}
+    - target: {fileID: 5405598771765548467, guid: 5df89dc0bba1c634e82edd476518525c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6129ae8a869aeec4683c0b3d3cca0577,
+        type: 3}
     - target: {fileID: 8841065318791682808, guid: 5df89dc0bba1c634e82edd476518525c,
         type: 3}
       propertyPath: m_Pivot.x
