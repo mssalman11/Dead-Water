@@ -1,45 +1,112 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-/*
- * Author: Leland LeVassar
- * Created 10/6/24
- * Purpose: To control logic for the gear equipping based on item type
- */
+//Author: Leland LeVassar, with help from Night Run tutorial
+//Date created: 10/7/24
+//Purpose: To take in information about equipment and pass it on to the character stats
 
-public class EquipmentSlotScript : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class EquipmentSlotScript : MonoBehaviour, IPointerClickHandler
 {
-    //IPointerHandlers are required for this to work. Make sure their associated functions are in the script.
+    //Slot appearance
+    [SerializeField]
+    private Image slotImage;
 
-    public EquipmentDragScript.Slot ItemType = EquipmentDragScript.Slot.attackSlot;
+    [SerializeField]
+    private Text slotName;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    [SerializeField]
+    private Image playerDisplayImage;
+
+    //Slot Data
+    [SerializeField]
+    private ItemType itemType = new ItemType();
+
+    private Sprite itemSprite;
+    private string itemName;
+    private string itemDescription;
+
+    private InventoryManager inventoryManager;
+    private EquipmentLibraryScript equipmentSOLibrary;
+
+    private bool slotInUse;
+    [SerializeField]
+    public GameObject selectedShader;
+    [SerializeField]
+    public bool thisItemSelected;
+
+    private void Start()
     {
-
+        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        equipmentSOLibrary = GameObject.Find("InventoryCanvas").GetComponent<EquipmentLibraryScript>();
     }
-    public void OnPointerExit(PointerEventData eventData)
+
+    public void OnPointerClick(PointerEventData eventData)
     {
-
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
-
-        EquipmentDragScript drag = eventData.pointerDrag.GetComponent<EquipmentDragScript>();
-        if (drag != null)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            //Makes sure more than one item can't be put in slot
-            if (transform.childCount == 0)
-            {
-                GameObject dropped = eventData.pointerDrag;
-                EquipmentDragScript draggableItem = dropped.GetComponent<EquipmentDragScript>();
-                draggableItem.returnPoint = transform;
-            }
-            //Restricting non wildcard items to their respective slots.
-            
+            OnLeftClick();
         }
+    }
+
+    public void OnLeftClick()
+    {
+        if(thisItemSelected && slotInUse)
+        {
+            UnequipGear();
+        }
+        else
+        {
+            inventoryManager.DeselectAllSlots();
+            selectedShader.SetActive(true);
+            thisItemSelected = true;
+        }
+    }
+
+    //Equipping gear logic
+    public void EquipGear(Sprite itemSprite, string itemName, string itemDescription)
+    {
+        //Logic for if something is already equipped
+        //Sends it back to inventory and updates char stats window
+        if (slotInUse)
+        {
+            UnequipGear();
+        }
+
+        //Update Image
+        this.itemSprite = itemSprite;
+        slotImage.sprite = this.itemSprite;
+        slotName.enabled = false;
+
+        //Update Item Data
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+
+        //Update Display Image
+        playerDisplayImage.sprite = itemSprite; 
+
+        //Update Character Stats in equip menu
+        for(int i = 0; i < equipmentSOLibrary.itemScriptableObject.Length; i++)
+        {
+            if(equipmentSOLibrary.itemScriptableObject[i].itemName == this.itemName)
+            {
+                equipmentSOLibrary.itemScriptableObject[i].EquipItem();
+            }
+        }
+
+        slotInUse = true;
+    }
+
+    public void UnequipGear()
+    {
+        inventoryManager.DeselectAllSlots();
+
+        //Sends item back to inventory with quantity of 1
+        inventoryManager.AddItem(itemName, 1, itemSprite, itemDescription, itemType);
+
+        //Update Slot Image
+        slotName.enabled = true;
     }
 }
