@@ -23,6 +23,11 @@ public class InventorySlotScript : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private Image itemImage;
 
+    //Item Stats
+    public int AttackIncrease;
+    public int MaxHpIncrease;
+    public int HealIncrease;
+
     //Description Variables
     public Image itemDescriptionImage;
     public Text ItemDescriptionNameText;
@@ -73,6 +78,7 @@ public class InventorySlotScript : MonoBehaviour, IPointerClickHandler
         inventoryManager.DeselectAllSlots();
         selectedShader.SetActive(true);
         thisItemSelected = true;
+
         ItemDescriptionNameText.text = itemName;
         ItemDescriptionText.text = itemDescription;
         itemDescriptionImage.sprite = itemSprite;
