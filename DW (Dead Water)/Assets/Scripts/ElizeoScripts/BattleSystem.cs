@@ -81,7 +81,7 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator SetupBattle() //was originally a void function used to test the dialouge and HUD.
     {
         
-        GameObject charGO = Instantiate(characters[Random.Range(0,2)], playerBattlePos.transform.position, Quaternion.identity);
+        GameObject charGO = Instantiate(characters[Random.Range(0,3)], playerBattlePos.transform.position, Quaternion.identity);
         playerUnit = charGO.GetComponent<CharacterUnit>();
         
         GameObject enemyGO = Instantiate(enemies[0], enemyBattlePos.transform.position, Quaternion.identity);

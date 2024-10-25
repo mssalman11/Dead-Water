@@ -12,8 +12,8 @@ public class ItemBaseScript : ScriptableObject
     public string itemName;
 
     //Stat variables
-    public float attack, attackSpeed, maxHp, healAmount, healRate;
-
+    public float attackSpeed, healAmount, healRate;
+    public int attack, maxHp; //Added by Elizeo
     public void EquipItem()
     {
         //Update stats
