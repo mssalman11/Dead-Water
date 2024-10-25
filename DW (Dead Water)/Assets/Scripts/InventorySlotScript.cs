@@ -81,7 +81,7 @@ public class InventorySlotScript : MonoBehaviour, IPointerClickHandler
 
         ItemDescriptionNameText.text = itemName;
         ItemDescriptionText.text = itemDescription;
-        itemDescriptionImage.sprite = itemSprite;
+        //itemDescriptionImage.sprite = itemSprite;
     }
 
     private void EquipGear()
