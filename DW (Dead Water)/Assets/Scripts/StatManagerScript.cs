@@ -24,7 +24,7 @@ public class StatManagerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void UpdateEquipmentStats()
+    public void UpdateEquipmentStats()
     {
         characterNameText.text = charStat.name.ToString();
         maxHpText.text = charStat.maxHp.ToString();

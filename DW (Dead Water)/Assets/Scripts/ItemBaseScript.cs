@@ -25,6 +25,9 @@ public class ItemBaseScript : ScriptableObject
         statManager.healAmount += healAmount;
         //When updating rates always remember, - faster and + is slower
         statManager.healRate += healRate;
+
+        statManager.UpdateEquipmentStats();
+        Debug.Log ("Updated Attack " + attack + " Health " + maxHp + " Healing " + healAmount);
     }
 
     /*
@@ -37,6 +40,8 @@ public class ItemBaseScript : ScriptableObject
         statManager.maxHp -= maxHp;
         statManager.healAmount -= healAmount;
         statManager.healRate -= healRate;
+
+        StatManagerScript.UpdateEquipmentStats();
     }
     */
 }
