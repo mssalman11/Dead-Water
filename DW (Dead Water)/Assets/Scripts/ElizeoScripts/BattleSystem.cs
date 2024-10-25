@@ -28,6 +28,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject triggerTest;
 
     public bool incomingBattle;
+    public static bool isPlayerDead;
+    public static bool isEnemyDead;
 
     public Transform playerBattlePos;
     public GameObject enemyBattlePos;
@@ -36,6 +38,7 @@ public class BattleSystem : MonoBehaviour
     //public TestUnit charUnit;
     public CharacterUnit playerUnit;
     public EnemyUnit enemyUnit;
+
     //public TestUnit enemyUnit;
 
 
@@ -52,8 +55,9 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = BattleState.START;
-        StartCoroutine(SetupBattle());
-        incomingBattle = false;
+        //StartCoroutine(SetupBattle());
+        incomingBattle = true;
+        triggerTest.SetActive(false);
     }
 
     private void Update()
@@ -176,16 +180,18 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator PlayerAttack()
     {
         //Damages Enemy
-        bool isDead = enemyUnit.takeDamage(playerUnit.damage);
+        isEnemyDead = enemyUnit.takeDamage(playerUnit.damage);
 
         enemyHUD.SetHP(enemyUnit.currentHP);
         dialougeText.text = playerUnit.unitName + " has attacked!";
+
+        
 
         //Time of Attack
         yield return new WaitForSeconds(2f);
 
         //Checks if the enemy is dead
-        if(isDead)
+        if(isEnemyDead)
         {
             // The Battle Ends
             state = BattleState.WON;
@@ -233,13 +239,13 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.takeDamage(enemyUnit.damage);
+        isPlayerDead = playerUnit.takeDamage(enemyUnit.damage);
 
         playerHUD.SetHP(playerUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
 
-        if(isDead)
+        if(isPlayerDead)
         {
             state = BattleState.LOST;
             EndBattle();
@@ -262,8 +268,9 @@ public class BattleSystem : MonoBehaviour
         playerHUD.goldText.text = "Gold: " + playerUnit.currentGold.ToString();
 
         yield return new WaitForSeconds(2f);
+        ResourceManagement.Instance.isBattleOver();
         incomingBattle = true;
-        triggerTest.SetActive(true);
+       // triggerTest.SetActive(true);
         //dialougeText.text = "Incoming next battle";
 
         //yield return new WaitForSeconds(4f);

@@ -16,7 +16,7 @@ public class BSManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Ctrigger.OnPlayerTriggerEnter += ColliderTrigger_OnPlayerEnterTrigger;
+        //Ctrigger.OnPlayerTriggerEnter += ColliderTrigger_OnPlayerEnterTrigger;
 
     }
 

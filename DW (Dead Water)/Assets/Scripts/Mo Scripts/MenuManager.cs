@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level0Test");
     }
 
     public void LoadShop()
@@ -17,6 +17,11 @@ public class MenuManager : MonoBehaviour
 
     public void LoadCharacterMenu()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Characters_Leland");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenus");
     }
 }

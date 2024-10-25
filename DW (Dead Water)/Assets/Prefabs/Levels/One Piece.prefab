@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92367fa4764118d40a2e4b9ca3795804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battle: {fileID: 0}
+  level: {fileID: 5993528221370943736}
 --- !u!1 &3020295976934276339
 GameObject:
   m_ObjectHideFlags: 0

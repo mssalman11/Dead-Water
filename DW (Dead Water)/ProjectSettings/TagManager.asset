@@ -9,6 +9,8 @@ TagManager:
   - NextPoint
   - DestroyBlock
   - StopLevel
+  - FirstBattle
+  - BattleSystemTag
   layers:
   - Default
   - TransparentFX

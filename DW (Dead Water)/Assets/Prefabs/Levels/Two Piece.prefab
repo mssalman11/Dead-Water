@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 2137394056062910377}
   m_Layer: 0
   m_Name: BattleTrigger
-  m_TagString: Untagged
+  m_TagString: StopLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,6 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92367fa4764118d40a2e4b9ca3795804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battle: {fileID: 0}
+  level: {fileID: 3393371888917961466}
 --- !u!1 &7035856460837173311
 GameObject:
   m_ObjectHideFlags: 0
