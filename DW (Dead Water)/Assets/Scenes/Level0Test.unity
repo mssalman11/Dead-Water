@@ -3244,6 +3244,7 @@ MonoBehaviour:
   - {fileID: 2113570738556007113, guid: abf5c09fa34a14f4aa364307ae22e3ba, type: 3}
   - {fileID: 2113570738556007113, guid: 4aae02601a71b5547826a858e5427003, type: 3}
   triggerTest: {fileID: 917018941}
+  attackButton: {fileID: 1266886423}
   incomingBattle: 1
   playerBattlePos: {fileID: 464606754}
   enemyBattlePos: {fileID: 806383262}

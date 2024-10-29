@@ -26,6 +26,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject[] characters;
     public GameObject[] enemies;
     public GameObject triggerTest;
+    public GameObject attackButton;
 
     public bool incomingBattle;
     public static bool isPlayerDead;
@@ -97,9 +98,11 @@ public class BattleSystem : MonoBehaviour
         enemyHUD.SetEnemyHUD(enemyUnit);
         playerHUD.SetHP(playerUnit.charStat.maxHp);
         enemyHUD.SetHP(enemyUnit.enemyStat.maxHp) ;
+        attackButton.SetActive(false);
 
         yield return new WaitForSeconds(2);
 
+        attackButton.SetActive(true);
         state = BattleState.PLAYERTURN;
         PlayerTurn();
     }
@@ -116,7 +119,11 @@ public class BattleSystem : MonoBehaviour
         enemyHUD.SetEnemyHUD(enemyUnit);
         enemyHUD.SetHP(enemyUnit.enemyStat.maxHp);
 
+        attackButton.SetActive(false);
+
         yield return new WaitForSeconds(2);
+
+        attackButton.SetActive(true);
 
         state = BattleState.PLAYERTURN;
         PlayerTurn();
@@ -185,7 +192,8 @@ public class BattleSystem : MonoBehaviour
         enemyHUD.SetHP(enemyUnit.currentHP);
         dialougeText.text = playerUnit.unitName + " has attacked!";
 
-        
+        attackButton.SetActive(false);
+
 
         //Time of Attack
         yield return new WaitForSeconds(2f);
