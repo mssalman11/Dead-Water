@@ -270,6 +270,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
         ResourceManagement.Instance.isBattleOver();
         incomingBattle = true;
+        StartCoroutine(IntotheNextBattle());
        // triggerTest.SetActive(true);
         //dialougeText.text = "Incoming next battle";
 
@@ -342,4 +343,10 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattleWithSquid());
     }
 
+
+    public IEnumerator IntotheNextBattle()
+    {
+        yield return new WaitForSeconds(3f);
+        ResourceManagement.Instance.nextMove = false;
+    }
 }
