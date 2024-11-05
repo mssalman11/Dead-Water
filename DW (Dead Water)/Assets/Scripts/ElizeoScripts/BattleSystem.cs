@@ -66,6 +66,7 @@ public class BattleSystem : MonoBehaviour
         startAnotherBattle();
     }
 
+    //Turns the battle mode either on or off.
     public void startAnotherBattle()
     {
         if (incomingBattle == true)
@@ -83,7 +84,7 @@ public class BattleSystem : MonoBehaviour
 
     /* This is meant to set up enemies and characters in the battle system
      */
-    public IEnumerator SetupBattle() //was originally a void function used to test the dialouge and HUD.
+    public IEnumerator SetupBattle() //USED FOR THE VERY FIRST TRIGGER OF THE LEVEL. Tag for the trigger should be "FirstBattle"
     {
         
         GameObject charGO = Instantiate(characters[Random.Range(0,3)], playerBattlePos.transform.position, Quaternion.identity);
@@ -107,7 +108,7 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
-    //Use this coroutine for the on the Trigger enter
+    //Use this coroutine for the on the second Trigger enter and above
     public IEnumerator SetupAnotherBattle()
     {
         GameObject enemyGO = Instantiate(enemies[Random.Range(0,3)], enemyBattlePos.transform.position, Quaternion.identity);
@@ -129,7 +130,7 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
-    //Trigger Coroutines for Specific Enemy
+    //Trigger Coroutines for Specific Enemy (TESTING PURPOSES ONLY)
 
     //Spawns a Skull Jelly
     public IEnumerator SetupBattleWithJelly()
@@ -184,6 +185,7 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYERTURN;
         PlayerTurn();
     }
+    //THE ATTACK ACTION
     public IEnumerator PlayerAttack()
     {
         //Damages Enemy
@@ -216,6 +218,7 @@ public class BattleSystem : MonoBehaviour
         //
     }
 
+    //Changes the dialouge base on the result of battle.
     public void EndBattle()
     {
         if (state == BattleState.WON)
@@ -241,6 +244,7 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(EnemyTurn());
     }
 
+    //The enemy's turn to attack
     public IEnumerator EnemyTurn()
     {
         dialougeText.text = enemyUnit.enemyStat.name + " is Attacking!";
@@ -266,6 +270,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    //Starts up after the battle is Won
     public IEnumerator NextBattle()
     {
         
@@ -276,17 +281,24 @@ public class BattleSystem : MonoBehaviour
         playerHUD.goldText.text = "Gold: " + playerUnit.currentGold.ToString();
 
         yield return new WaitForSeconds(2f);
+
+        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
         ResourceManagement.Instance.isBattleOver();
         incomingBattle = true;
         StartCoroutine(IntotheNextBattle());
+        //-------------------------------------
+
        // triggerTest.SetActive(true);
         //dialougeText.text = "Incoming next battle";
 
         //yield return new WaitForSeconds(4f);
 
         // charUnit.currentHP = 22; //11;
+
+        //Replenishes Enemy HP
         enemyUnit.currentHP = 22;
 
+        //Fixes bug that makes the health not show it's increase.
         playerHUD.SetHP(playerUnit.currentHP);
         enemyHUD.SetHP(enemyUnit.currentHP);
 
@@ -351,7 +363,7 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattleWithSquid());
     }
 
-
+    //Helps the player stop every trigger.
     public IEnumerator IntotheNextBattle()
     {
         yield return new WaitForSeconds(3f);
