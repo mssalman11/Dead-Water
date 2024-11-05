@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class BattleHUD : MonoBehaviour
 {
     public Text nameText;
+    public Text nameTextShadow;
     public Text levelText;
     public Slider hpSlider;
     public Text goldText;
@@ -17,6 +18,7 @@ public class BattleHUD : MonoBehaviour
     public void SetCharHUD(CharacterUnit unit)
     {
         nameText.text = unit.charStat.name;
+        nameTextShadow.text = unit.charStat.name;
         levelText.text = "Lvl: " + unit.level;
         hpSlider.maxValue = unit.charStat.maxHp ;
         hpSlider.value = unit.currentHP;
@@ -26,6 +28,7 @@ public class BattleHUD : MonoBehaviour
     public void SetEnemyHUD(EnemyUnit unit)
     {
         nameText.text = unit.enemyStat.name;
+        nameTextShadow.text = unit.enemyStat.name;
         levelText.text = "Lvl: " + unit.level;
         hpSlider.maxValue = unit.enemyStat.maxHp ;
         hpSlider.value = unit.currentHP;

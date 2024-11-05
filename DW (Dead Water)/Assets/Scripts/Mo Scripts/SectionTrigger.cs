@@ -16,7 +16,7 @@ public class SectionTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("NextPoint"))
         {
             int rlevel = Random.Range(0, levels.Length);
-            Instantiate(levels[rlevel], new Vector3(0 , 0, 13.27f), Quaternion.identity);
+            Instantiate(levels[rlevel], new Vector3(0 , 0.5f, 6.39f), Quaternion.identity);
         }
     }
 }

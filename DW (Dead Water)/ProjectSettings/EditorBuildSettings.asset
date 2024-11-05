@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenus.unity
     guid: ea57e04deac807f428a14637fac2c49f
   - enabled: 1
+    path: Assets/Scenes/Characters_Leland.unity
+    guid: a09d1d3b83966b440b90b597c25258fb
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 342a764fb0a38254abe496fc8c3d1941
+  - enabled: 1
     path: Assets/Scenes/Level0Test.unity
     guid: 8a9fb4e458147ff448db5d1416d1963e
   m_configObjects: {}
