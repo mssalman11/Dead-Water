@@ -44,7 +44,10 @@ public class BattleSystem : MonoBehaviour
 
     //public TestUnit enemyUnit;
 
+    //Text for the damage
+    public Text damageText;
 
+    //Text for the Dialouge
     public Text dialougeText;
 
     public BattleHUD playerHUD;
@@ -65,6 +68,8 @@ public class BattleSystem : MonoBehaviour
 
         //Opens up the character selection first before the level starts
         ResourceManagement.Instance.CharSelection();
+
+        damageText.text = " ";
     }
 
     private void Update()
@@ -212,7 +217,7 @@ public class BattleSystem : MonoBehaviour
     {
         //Damages Enemy
         isEnemyDead = enemyUnit.takeDamage(playerUnit.damage);
-
+        damageText.text = playerUnit.damage.ToString();
         enemyHUD.SetHP(enemyUnit.currentHP);
         dialougeText.text = playerUnit.unitName + " has attacked!";
 
@@ -221,6 +226,8 @@ public class BattleSystem : MonoBehaviour
 
         //Time of Attack
         yield return new WaitForSeconds(2f);
+
+        damageText.text = " ";
 
         //Checks if the enemy is dead
         if(isEnemyDead)
@@ -275,9 +282,13 @@ public class BattleSystem : MonoBehaviour
 
         isPlayerDead = playerUnit.takeDamage(enemyUnit.damage);
 
+        damageText.text = enemyUnit.damage.ToString();
+
         playerHUD.SetHP(playerUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
+
+        damageText.text = " ";
 
         if(isPlayerDead)
         {
