@@ -11,6 +11,8 @@ using TMPro;
  *[Producer and Designer are free to make some changes, make sure to state your name and tell me what you have changed.]
  */
 
+
+
 public enum BattleState
 {
     START,
@@ -51,6 +53,7 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+
     
     // Start is called before the first frame update
     void Start()
@@ -59,6 +62,9 @@ public class BattleSystem : MonoBehaviour
         //StartCoroutine(SetupBattle());
         incomingBattle = true;
         triggerTest.SetActive(false);
+
+        //Opens up the character selection first before the level starts
+        ResourceManagement.Instance.CharSelection();
     }
 
     private void Update()
@@ -82,14 +88,30 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+
     /* This is meant to set up enemies and characters in the battle system
      */
     public IEnumerator SetupBattle() //USED FOR THE VERY FIRST TRIGGER OF THE LEVEL. Tag for the trigger should be "FirstBattle"
     {
-        
-        GameObject charGO = Instantiate(characters[Random.Range(0,3)], playerBattlePos.transform.position, Quaternion.identity);
-        playerUnit = charGO.GetComponent<CharacterUnit>();
-        
+        //Lets the player play as "Michigan" after selection.
+        if (ResourceManagement.Instance.currentChar == ResourceManagement.SelectedChar.MICHIGAN)
+        {
+            GameObject charGO = Instantiate(characters[0], playerBattlePos.transform.position, Quaternion.identity);
+            playerUnit = charGO.GetComponent<CharacterUnit>();
+        }
+        //Lets the player play as "Rainier" after selection.
+        if (ResourceManagement.Instance.currentChar == ResourceManagement.SelectedChar.RAINIER)
+        {
+            GameObject charGO = Instantiate(characters[1], playerBattlePos.transform.position, Quaternion.identity);
+            playerUnit = charGO.GetComponent<CharacterUnit>();
+        }
+        //Lets the player play as "Colbalt" after selection.
+        if (ResourceManagement.Instance.currentChar == ResourceManagement.SelectedChar.COLBALT)
+        {
+            GameObject charGO = Instantiate(characters[2], playerBattlePos.transform.position, Quaternion.identity);
+            playerUnit = charGO.GetComponent<CharacterUnit>();
+        }
+
         GameObject enemyGO = Instantiate(enemies[0], enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 

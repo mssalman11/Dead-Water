@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*[Nava, Elizeo]
+ *[September 24, 2024]
+ *[This is the character script that utilized Leland's Character ScriptableObject]
+ */
 public class CharacterUnit : MonoBehaviour
 {
 
@@ -20,6 +23,7 @@ public class CharacterUnit : MonoBehaviour
     public int currentGold;
     public int goldRange;
 
+    //This is to set up a stat for each scriptable object
     public void Start()
     {
         goldRange = Random.Range(10, 20);
@@ -45,7 +49,7 @@ public class CharacterUnit : MonoBehaviour
         }
     }
 
-
+    //This is where the amount of health that the player can heal.
     public void Heal(int amount)
     {
         currentHP += amount;
@@ -55,11 +59,13 @@ public class CharacterUnit : MonoBehaviour
         }
     }
 
+    //This is where the Gold System lies
     public void GetGold(int amount)
     {
         currentGold += amount;
     }
 
+    //This
     public void unitDie()
     {
         if (currentHP <= 0)
