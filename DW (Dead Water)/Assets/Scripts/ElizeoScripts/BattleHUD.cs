@@ -22,7 +22,7 @@ public class BattleHUD : MonoBehaviour
         levelText.text = "Lvl: " + unit.level;
         hpSlider.maxValue = unit.charStat.maxHp ;
         hpSlider.value = unit.currentHP;
-        goldText.text = "Gold: " + unit.currentGold;
+        goldText.text = "Gold: " + ResourceManagement.Instance.totalCoins;
     }
 
     public void SetEnemyHUD(EnemyUnit unit)

@@ -1505,7 +1505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &509031150
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1515,7 +1515,7 @@ RectTransform:
   m_GameObject: {fileID: 509031149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0782, y: 2.0782, z: 2.0782}
+  m_LocalScale: {x: 3.3382492, y: 3.3382492, z: 3.3382492}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1143492333}
@@ -1523,7 +1523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 164, y: -909.6}
+  m_AnchoredPosition: {x: 260, y: -850}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &509031151
@@ -1655,8 +1655,8 @@ RectTransform:
   - {fileID: 1880908953}
   - {fileID: 40580047}
   - {fileID: 1266886424}
-  - {fileID: 1790827706}
   - {fileID: 509031150}
+  - {fileID: 1790827706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2247,58 +2247,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &958666726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 958666728}
-  - component: {fileID: 958666727}
-  m_Layer: 0
-  m_Name: Testitem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &958666727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958666726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5cb540a3d4e5ee458b14db004d56e37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemStat: {fileID: 11400000, guid: 6ca6efec886175046a57472d7ba54744, type: 2}
-  itemName: 
-  priority: 0
-  healSpeed: 0
-  healValue: 0
-  itemHP: 0
-  itemAttack: 0
-  rarity: 4
---- !u!4 &958666728
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958666726}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6286824, y: -3.8138676, z: 6.449608}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &976747961
 GameObject:
   m_ObjectHideFlags: 0
@@ -3112,7 +3060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -849}
+  m_AnchoredPosition: {x: -263, y: -852}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1266886425
@@ -3243,7 +3191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -29, y: -4.1}
+  m_AnchoredPosition: {x: -33.7, y: 31}
   m_SizeDelta: {x: 240.58868, y: 67.7864}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311883740
@@ -4102,9 +4050,12 @@ MonoBehaviour:
   - {fileID: 2113570738556007113, guid: 4aae02601a71b5547826a858e5427003, type: 3}
   triggerTest: {fileID: 917018941}
   attackButton: {fileID: 1266886423}
+  healButton: {fileID: 509031149}
   incomingBattle: 1
   playerBattlePos: {fileID: 464606754}
   enemyBattlePos: {fileID: 806383262}
+  healValue: 2
+  healingPrice: 3
   playerUnit: {fileID: 0}
   enemyUnit: {fileID: 0}
   damageText: {fileID: 181093159}
@@ -5085,6 +5036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextMove: 0
+  totalCoins: 0
   charSelectUI: {fileID: 1076266602}
   currentChar: 0
 --- !u!1 &1982691414
@@ -5640,4 +5592,3 @@ SceneRoots:
   - {fileID: 464606754}
   - {fileID: 806383263}
   - {fileID: 1911498614}
-  - {fileID: 958666728}

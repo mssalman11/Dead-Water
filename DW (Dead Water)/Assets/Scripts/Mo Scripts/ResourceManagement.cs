@@ -9,7 +9,7 @@ public class ResourceManagement : MonoBehaviour
 
     public bool nextMove;
 
-    private int totalCoins;
+    public int totalCoins;
 
     public GameObject charSelectUI;
 
@@ -29,12 +29,12 @@ public class ResourceManagement : MonoBehaviour
         currentChar = SelectedChar.NONE;
     }
 
-    private void addCoins(int c)
+    public void addCoins(int c)
     {
         totalCoins += c;
     }
 
-    private void removeCoins(int c) 
+    public void removeCoins(int c) 
     { 
         totalCoins -= c;
     }

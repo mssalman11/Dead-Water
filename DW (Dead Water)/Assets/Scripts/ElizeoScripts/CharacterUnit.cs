@@ -20,13 +20,13 @@ public class CharacterUnit : MonoBehaviour
     public int maxHP;
     public int currentHP;
 
-    public int currentGold;
-    public int goldRange;
+    //public int currentGold; Player gold will now be used in the Resource Management Singleton Script.
+    //public int goldRange;
 
     //This is to set up a stat for each scriptable object
     public void Start()
     {
-        goldRange = Random.Range(10, 20);
+       // goldRange = Random.Range(10, 20);
         unitName = charStat.name;
         damage = charStat.attack;
         priority = charStat.attackSpeed;
@@ -60,10 +60,10 @@ public class CharacterUnit : MonoBehaviour
     }
 
     //This is where the Gold System lies
-    public void GetGold(int amount)
-    {
-        currentGold += amount;
-    }
+    //public void GetGold(int amount)
+    //{
+        //currentGold += amount;
+    //}
 
     //This
     public void unitDie()

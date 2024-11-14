@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.Rendering;
 //using Unity.PlasticSCM.Editor.WebApi; <- For some reason, this was added. Had to contain this because it was causing an error.
 
 /*[Nava, Elizeo]
@@ -29,6 +30,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject[] enemies;
     public GameObject triggerTest;
     public GameObject attackButton;
+    public GameObject healButton;
 
     public bool incomingBattle;
     public static bool isPlayerDead;
@@ -36,6 +38,12 @@ public class BattleSystem : MonoBehaviour
 
     public Transform playerBattlePos;
     public GameObject enemyBattlePos;
+
+    //Value for Healing
+    [SerializeField] private int healValue;
+
+    //Price for Healing
+    [SerializeField] private int healingPrice;
 
     /* TestUnits are a placeholder for Leland's character data codes*/
     //public TestUnit charUnit;
@@ -127,10 +135,12 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetHP(playerUnit.charStat.maxHp);
         enemyHUD.SetHP(enemyUnit.enemyStat.maxHp) ;
         attackButton.SetActive(false);
+        healButton.SetActive(false);
 
         yield return new WaitForSeconds(2);
 
         attackButton.SetActive(true);
+        healButton.SetActive(true);
         state = BattleState.PLAYERTURN;
         PlayerTurn();
     }
@@ -141,17 +151,19 @@ public class BattleSystem : MonoBehaviour
         GameObject enemyGO = Instantiate(enemies[Random.Range(0,3)], enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 
-        dialougeText.text = "Another " + enemyUnit.enemyStat.name + " has appeared!";
+        dialougeText.text = "A " + enemyUnit.enemyStat.name + " has appeared!";
 
         playerHUD.SetCharHUD(playerUnit);
         enemyHUD.SetEnemyHUD(enemyUnit);
         enemyHUD.SetHP(enemyUnit.enemyStat.maxHp);
 
         attackButton.SetActive(false);
+        healButton.SetActive(false);
 
         yield return new WaitForSeconds(2);
 
         attackButton.SetActive(true);
+        healButton.SetActive(true);
 
         state = BattleState.PLAYERTURN;
         PlayerTurn();
@@ -222,6 +234,7 @@ public class BattleSystem : MonoBehaviour
         dialougeText.text = playerUnit.unitName + " has attacked!";
 
         attackButton.SetActive(false);
+        healButton.SetActive(false);
 
 
         //Time of Attack
@@ -261,16 +274,36 @@ public class BattleSystem : MonoBehaviour
     }
 
     //The healing function is added in for in case we ever implement healing items in the future.
+    //The healing system will now use gold
     public IEnumerator PlayerHeal()
     {
-        playerUnit.Heal(5);
+        //If the player has enough gold, heal the player and then the enemy will attack next. Healing costs 3 gold.
+        if (ResourceManagement.Instance.totalCoins >= healingPrice)
+        {
+            ResourceManagement.Instance.removeCoins(healingPrice);
+            playerHUD.goldText.text = "Gold: " + ResourceManagement.Instance.totalCoins.ToString();
+            playerUnit.Heal(playerUnit.maxHP / healValue);
+            playerHUD.SetHP(playerUnit.currentHP);
+            dialougeText.text = playerUnit.unitName + " has been healed!";
+            attackButton.SetActive(false);
+            healButton.SetActive(false);
+            yield return new WaitForSeconds(2f);
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());            
+        }
+        //If the player does not have enough gold, tell the player that their gold is insufficient and then lead them back to battle selection.
+        else if (ResourceManagement.Instance.totalCoins < healingPrice)
+        {
+            dialougeText.text = "Insufficient Gold";
+            attackButton.SetActive(false);
+            healButton.SetActive(false);
+            yield return new WaitForSeconds(2f);
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
+            attackButton.SetActive(true);
+            healButton.SetActive(true);
+        }
 
-        playerHUD.SetHP(playerUnit.currentHP);
-        dialougeText.text = playerUnit.name + " has been healed!";
-
-        yield return new WaitForSeconds(2f);
-        state = BattleState.ENEMYTURN;
-        StartCoroutine(EnemyTurn());
     }
 
     //The enemy's turn to attack
@@ -309,9 +342,9 @@ public class BattleSystem : MonoBehaviour
         
         yield return new WaitForSeconds(2f);
 
-        playerUnit.GetGold(enemyUnit.goldRange);
+        ResourceManagement.Instance.addCoins(enemyUnit.goldRange);
         dialougeText.text = playerUnit.unitName + " has earned " + enemyUnit.goldRange + " Gold!";
-        playerHUD.goldText.text = "Gold: " + playerUnit.currentGold.ToString();
+        playerHUD.goldText.text = "Gold: " + ResourceManagement.Instance.totalCoins.ToString();
 
         yield return new WaitForSeconds(2f);
 
@@ -361,6 +394,7 @@ public class BattleSystem : MonoBehaviour
 
     }
 
+    
     public void OnHealButton()
     {
         if (state != BattleState.PLAYERTURN)
