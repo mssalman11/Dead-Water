@@ -29,7 +29,7 @@ public class MoveLevel : MonoBehaviour
         }
         else
         {
-            transform.position += new Vector3(0, 0, -3) * Time.deltaTime;
+            transform.position += new Vector3(0, 0, -5) * Time.deltaTime;
         }
 
         
