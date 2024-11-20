@@ -16,8 +16,8 @@ MonoBehaviour:
   description: Provides support by reducing oncoming damage slightly
   characterModel: {fileID: 0}
   type1: 3
-  maxHp: 0
-  attack: 0
-  attackSpeed: 0
-  healAmount: 0
-  healRate: 0
+  maxHp: 18
+  attack: 4
+  attackSpeed: 0.7
+  healAmount: 2
+  healRate: 3
