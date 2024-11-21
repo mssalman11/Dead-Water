@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class ResourceManagement : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ResourceManagement : MonoBehaviour
     public int totalCoins;
 
     public GameObject charSelectUI;
+
+    public GameObject itemSelect;
 
     private void Awake()
     {
@@ -93,4 +96,7 @@ public class ResourceManagement : MonoBehaviour
         charSelectUI.SetActive(true);
         Time.timeScale = 0;
     }
+
+
+
 }

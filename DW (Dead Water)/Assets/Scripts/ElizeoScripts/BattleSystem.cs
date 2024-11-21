@@ -77,6 +77,8 @@ public class BattleSystem : MonoBehaviour
         //Opens up the character selection first before the level starts
         ResourceManagement.Instance.CharSelection();
 
+        ResourceManagement.Instance.itemSelect.SetActive(false);
+
         damageText.text = " ";
     }
 
@@ -348,10 +350,7 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
-        ResourceManagement.Instance.isBattleOver();
-        incomingBattle = true;
-        StartCoroutine(IntotheNextBattle());
+        
         //-------------------------------------
 
        // triggerTest.SetActive(true);
@@ -430,10 +429,20 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattleWithSquid());
     }
 
+    public void BattleOVER()
+    {
+        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
+        ResourceManagement.Instance.isBattleOver();
+        incomingBattle = true;
+        StartCoroutine(IntotheNextBattle());
+    }
+
     //Helps the player stop every trigger.
     public IEnumerator IntotheNextBattle()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         ResourceManagement.Instance.nextMove = false;
     }
+
+    
 }
