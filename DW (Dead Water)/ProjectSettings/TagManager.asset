@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Character
+  - NextPoint
+  - DestroyBlock
+  - StopLevel
+  - FirstBattle
+  - BattleSystemTag
   layers:
   - Default
   - TransparentFX
