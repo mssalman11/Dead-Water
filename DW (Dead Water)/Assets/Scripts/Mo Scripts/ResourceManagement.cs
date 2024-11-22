@@ -14,7 +14,7 @@ public class ResourceManagement : MonoBehaviour
 
     public GameObject charSelectUI;
 
-    public GameObject itemSelect;
+    public GameObject itemSelectUI;
 
     private void Awake()
     {

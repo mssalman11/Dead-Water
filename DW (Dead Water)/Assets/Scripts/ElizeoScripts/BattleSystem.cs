@@ -77,7 +77,7 @@ public class BattleSystem : MonoBehaviour
         //Opens up the character selection first before the level starts
         ResourceManagement.Instance.CharSelection();
 
-        ResourceManagement.Instance.itemSelect.SetActive(false);
+        ResourceManagement.Instance.itemSelectUI.SetActive(false);
 
         damageText.text = " ";
     }
