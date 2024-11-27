@@ -122,10 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charStat: {fileID: 11400000, guid: b8cbcbc8887e5174d9ed8e411d27b2e5, type: 2}
   unitName: 
-  level: 1
+  level: 0
   damage: 0
   priority: 0
   maxHP: 0
   currentHP: 0
-  currentGold: 0
-  goldRange: 0

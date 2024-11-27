@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class ResourceManagement : MonoBehaviour
@@ -92,5 +93,17 @@ public class ResourceManagement : MonoBehaviour
     {
         charSelectUI.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    //These will be the buttons for the Game Over Screen.
+    public void OnRestartButton()
+    {
+        var activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.name);
+    }
+
+    public void OnButtonQuit()
+    {
+        SceneManager.LoadScene("MainMenus");
     }
 }

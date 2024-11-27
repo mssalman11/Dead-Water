@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEditor.Rendering;
+using Unity.VisualScripting;
 //using Unity.PlasticSCM.Editor.WebApi; <- For some reason, this was added. Had to contain this because it was causing an error.
 
 /*[Nava, Elizeo]
@@ -31,6 +32,9 @@ public class BattleSystem : MonoBehaviour
     public GameObject triggerTest;
     public GameObject attackButton;
     public GameObject healButton;
+
+    public GameObject gameOverUI;
+    public GameObject continueUI;
 
     public bool incomingBattle;
     public static bool isPlayerDead;
@@ -73,6 +77,9 @@ public class BattleSystem : MonoBehaviour
         //StartCoroutine(SetupBattle());
         incomingBattle = true;
         triggerTest.SetActive(false);
+        gameOverUI.SetActive(false);
+        continueUI.SetActive(false);
+
 
         //Opens up the character selection first before the level starts
         ResourceManagement.Instance.CharSelection();
@@ -265,11 +272,11 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.WON)
         {
-            dialougeText.text = "You have won the battle!";
+            dialougeText.text = "YOU HAVE WON THE BATTLE!";
         }
         else if (state == BattleState.LOST)
         {
-            dialougeText.text = "You are dead. Game Over!";
+            dialougeText.text = "YOU ARE DEAD!";
         }
     }
 
@@ -327,6 +334,7 @@ public class BattleSystem : MonoBehaviour
         {
             state = BattleState.LOST;
             EndBattle();
+            StartCoroutine(GameOverScreen());
         }
         else
         {
@@ -377,6 +385,18 @@ public class BattleSystem : MonoBehaviour
 
         //StartCoroutine(PlayerAttack());
 
+    }
+
+    public IEnumerator GameOverScreen()
+    {
+        yield return new WaitForSeconds(2f);
+
+        incomingBattle = true;
+        gameOverUI.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        continueUI.SetActive(true);
     }
 
     public void PlayerTurn()
