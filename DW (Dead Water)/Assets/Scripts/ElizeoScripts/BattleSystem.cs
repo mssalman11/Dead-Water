@@ -350,10 +350,14 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        
+        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
+        ResourceManagement.Instance.isBattleOver();
+        incomingBattle = true;
+        StartCoroutine(IntotheNextBattle());
+
         //-------------------------------------
 
-       // triggerTest.SetActive(true);
+        // triggerTest.SetActive(true);
         //dialougeText.text = "Incoming next battle";
 
         //yield return new WaitForSeconds(4f);
