@@ -351,7 +351,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         ResourceManagement.Instance.itemSelectUI.SetActive(true);
-        incomingBattle = true;
+        dialougeText.text = " ";
         //-------------------------------------
 
         // triggerTest.SetActive(true);
@@ -445,13 +445,70 @@ public class BattleSystem : MonoBehaviour
         ResourceManagement.Instance.nextMove = false;
     }
 
-    public void GoToNextBattle()
+    //These functions will allow the player to go to the next battle after selecting an item.
+    
+    //These void function will be the action where the player obtains the item.
+    public void getAttackItem()
     {
-        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
-        ResourceManagement.Instance.isBattleOver();
-        incomingBattle = true;
-        StartCoroutine(IntotheNextBattle());
-
+        //This is a placeholder. This code should be able to add up to a current character's attack stat.
+        //(i.e. playerUnit.damage += any number
+        dialougeText.text = playerUnit.unitName + " obtained an attack item. (This is a test)";
     }
 
+    public void getDefenseItem()
+    {
+        //This is a placeholder. This code should be able to add up to a current character's health stat.
+        //(i.e. playerUnit.maxHP += any number
+        dialougeText.text = playerUnit.unitName + " obtained a defense item. (This is a test)";
+    }
+
+    public void getWildItem()
+    {
+        //This is a placeholder. Not much has been decided for the wild item yet..
+        dialougeText.text = playerUnit.unitName + " obtained a wild item. (This is a test)";
+    }
+
+    //These codes will activate once an item has been selected.
+    public IEnumerator attackItemObtained()
+    {
+        ResourceManagement.Instance.itemSelectUI.SetActive(false);
+        getAttackItem();
+        yield return new WaitForSeconds(2f);
+        dialougeText.text = " ";
+        BattleOVER();
+    }
+
+    public IEnumerator defenseItemObtained()
+    {
+        ResourceManagement.Instance.itemSelectUI.SetActive(false);
+        getDefenseItem();
+        yield return new WaitForSeconds(2f);
+        dialougeText.text = " ";
+        BattleOVER();
+    }
+
+    public IEnumerator wildItemObtained()
+    {
+        ResourceManagement.Instance.itemSelectUI.SetActive(false);
+        getWildItem();
+        yield return new WaitForSeconds(2f);
+        dialougeText.text = " ";
+        BattleOVER();
+    }
+
+    //These will be used on each item button.
+    public void OnAttackItemSelection()
+    {
+        StartCoroutine(attackItemObtained());
+    }
+
+    public void OnDefenseItemSelection()
+    {
+        StartCoroutine(defenseItemObtained());
+    }
+
+    public void OnWildItemSelection()
+    {
+        StartCoroutine(wildItemObtained());
+    }
 }
