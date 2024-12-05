@@ -24,6 +24,7 @@ public enum BattleState
     LOST
 }
 
+[RequireComponent(typeof(AudioSource))]
 public class BattleSystem : MonoBehaviour
 {
     public GameObject battleUI;
@@ -234,12 +235,15 @@ public class BattleSystem : MonoBehaviour
     //THE ATTACK ACTION
     public IEnumerator PlayerAttack()
     {
+        dialougeText.text = playerUnit.unitName + " has attacked!";
+
+        yield return new WaitForSeconds(1f);
+
         //Damages Enemy
         isEnemyDead = enemyUnit.takeDamage(playerUnit.damage);
         damageText.text = playerUnit.damage.ToString();
         enemyHUD.SetHP(enemyUnit.currentHP);
-        dialougeText.text = playerUnit.unitName + " has attacked!";
-
+        
         attackButton.SetActive(false);
         healButton.SetActive(false);
 
@@ -456,4 +460,15 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ResourceManagement.Instance.nextMove = false;
     }
+
+    /* This displays the function for a SoundManager for this singleton
+     * Each of them contains a sound for the main gameplay.
+     * Menu music is a separate script.
+     */
+
+    public AudioClip attackSound;
+    public AudioClip victorySound;
+    public AudioClip defeatSound;
+
+
 }

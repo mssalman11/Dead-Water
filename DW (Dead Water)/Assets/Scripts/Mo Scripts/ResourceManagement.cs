@@ -106,4 +106,6 @@ public class ResourceManagement : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenus");
     }
+
+
 }
