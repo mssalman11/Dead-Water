@@ -461,14 +461,4 @@ public class BattleSystem : MonoBehaviour
         ResourceManagement.Instance.nextMove = false;
     }
 
-    /* This displays the function for a SoundManager for this singleton
-     * Each of them contains a sound for the main gameplay.
-     * Menu music is a separate script.
-     */
-
-    public AudioClip attackSound;
-    public AudioClip victorySound;
-    public AudioClip defeatSound;
-
-
 }
