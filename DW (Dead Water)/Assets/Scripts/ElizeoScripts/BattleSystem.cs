@@ -99,7 +99,7 @@ public class BattleSystem : MonoBehaviour
         {
 
             battleUI.SetActive(true);
-            triggerTest.SetActive(false);
+            //triggerTest.SetActive(false);
         }
     }
 
@@ -350,11 +350,8 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
-        ResourceManagement.Instance.isBattleOver();
+        ResourceManagement.Instance.itemSelectUI.SetActive(true);
         incomingBattle = true;
-        StartCoroutine(IntotheNextBattle());
-
         //-------------------------------------
 
         // triggerTest.SetActive(true);
@@ -448,5 +445,13 @@ public class BattleSystem : MonoBehaviour
         ResourceManagement.Instance.nextMove = false;
     }
 
-    
+    public void GoToNextBattle()
+    {
+        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
+        ResourceManagement.Instance.isBattleOver();
+        incomingBattle = true;
+        StartCoroutine(IntotheNextBattle());
+
+    }
+
 }
