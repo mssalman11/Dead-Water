@@ -69,8 +69,10 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
-
+    /*This will use the SoundManagement Script*/
+    public SoundManagement soundManager;
     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +88,11 @@ public class BattleSystem : MonoBehaviour
         ResourceManagement.Instance.CharSelection();
 
         damageText.text = " ";
+
+        //Opens up the SoundManager
+        soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManagement>();
+        soundManager.traverseSource.Play();
+
     }
 
     private void Update()
@@ -144,6 +151,8 @@ public class BattleSystem : MonoBehaviour
         enemyHUD.SetHP(enemyUnit.enemyStat.maxHp) ;
         attackButton.SetActive(false);
         healButton.SetActive(false);
+        soundManager.battleSource.Play();
+        soundManager.traverseSource.Stop();
 
         yield return new WaitForSeconds(2);
 
@@ -167,6 +176,9 @@ public class BattleSystem : MonoBehaviour
 
         attackButton.SetActive(false);
         healButton.SetActive(false);
+
+        soundManager.traverseSource.Stop();
+        soundManager.battleSource.Play();
 
         yield return new WaitForSeconds(2);
 
@@ -237,6 +249,9 @@ public class BattleSystem : MonoBehaviour
     {
         dialougeText.text = playerUnit.unitName + " has attacked!";
 
+        attackButton.SetActive(false);
+        healButton.SetActive(false);
+
         yield return new WaitForSeconds(1f);
 
         //Damages Enemy
@@ -244,8 +259,9 @@ public class BattleSystem : MonoBehaviour
         damageText.text = playerUnit.damage.ToString();
         enemyHUD.SetHP(enemyUnit.currentHP);
         
-        attackButton.SetActive(false);
-        healButton.SetActive(false);
+        
+
+        soundManager.PlaySFX(soundManager.attackSound);
 
 
         //Time of Attack
@@ -277,10 +293,13 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WON)
         {
             dialougeText.text = "YOU HAVE WON THE BATTLE!";
+            soundManager.PlaySFX(soundManager.victorySound);
+
         }
         else if (state == BattleState.LOST)
         {
             dialougeText.text = "YOU ARE DEAD!";
+            soundManager.PlaySFX(soundManager.defeatSound);
         }
     }
 
@@ -298,6 +317,7 @@ public class BattleSystem : MonoBehaviour
             dialougeText.text = playerUnit.unitName + " has been healed!";
             attackButton.SetActive(false);
             healButton.SetActive(false);
+            soundManager.PlaySFX(soundManager.healSound);
             yield return new WaitForSeconds(2f);
             state = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());            
@@ -308,6 +328,7 @@ public class BattleSystem : MonoBehaviour
             dialougeText.text = "Insufficient Gold";
             attackButton.SetActive(false);
             healButton.SetActive(false);
+            soundManager.PlaySFX(soundManager.invalidSound);
             yield return new WaitForSeconds(2f);
             state = BattleState.PLAYERTURN;
             PlayerTurn();
@@ -329,6 +350,8 @@ public class BattleSystem : MonoBehaviour
         damageText.text = enemyUnit.damage.ToString();
 
         playerHUD.SetHP(playerUnit.currentHP);
+
+        soundManager.PlaySFX(soundManager.attackSound);
 
         yield return new WaitForSeconds(1f);
 
@@ -357,6 +380,7 @@ public class BattleSystem : MonoBehaviour
         ResourceManagement.Instance.addCoins(enemyUnit.goldRange);
         dialougeText.text = playerUnit.unitName + " has earned " + enemyUnit.goldRange + " Gold!";
         playerHUD.goldText.text = "Gold: " + ResourceManagement.Instance.totalCoins.ToString();
+        soundManager.PlaySFX(soundManager.goldSound);
 
         yield return new WaitForSeconds(2f);
 
@@ -364,9 +388,13 @@ public class BattleSystem : MonoBehaviour
         ResourceManagement.Instance.isBattleOver();
         incomingBattle = true;
         StartCoroutine(IntotheNextBattle());
+        soundManager.battleSource.Stop();
+        soundManager.traverseSource.Play();
+
+
         //-------------------------------------
 
-       // triggerTest.SetActive(true);
+        // triggerTest.SetActive(true);
         //dialougeText.text = "Incoming next battle";
 
         //yield return new WaitForSeconds(4f);
@@ -460,5 +488,6 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ResourceManagement.Instance.nextMove = false;
     }
+
 
 }
