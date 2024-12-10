@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rainier
   description: balanced tank with mediocre damage output
-  characterModel: {fileID: 0}
+  characterModel: {fileID: 919132149155446097, guid: b40b526f26b09234d99ab21090434da4,
+    type: 3}
   type1: 2
   maxHp: 20
+  currentHp: 0
   attack: 3
   attackSpeed: 0.5
   healAmount: 0

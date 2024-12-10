@@ -7853,7 +7853,6 @@ MonoBehaviour:
   nextMove: 0
   totalCoins: 2
   charSelectUI: {fileID: 1076266602}
-  itemSelectUI: {fileID: 514812787}
   currentChar: 0
 --- !u!1 &1944439061
 GameObject:
