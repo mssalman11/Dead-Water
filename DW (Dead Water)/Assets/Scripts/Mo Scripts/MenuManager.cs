@@ -60,4 +60,9 @@ public class MenuManager : MonoBehaviour
         instructionID = 0;
     }
 
+    public void QuitAPP()
+    {
+        Application.Quit();
+    }
+
 }

@@ -43,6 +43,7 @@ public class BattleSystem : MonoBehaviour
 
     public Transform playerBattlePos;
     public GameObject enemyBattlePos;
+    private int scalingcounter = 0;
 
     //Value for Healing
     [SerializeField] private int healValue;
@@ -191,6 +192,9 @@ public class BattleSystem : MonoBehaviour
 
         state = BattleState.PLAYERTURN;
         PlayerTurn();
+        Debug.Log(enemyUnit.damage);
+        Debug.Log(enemyUnit.maxHP);
+        Debug.Log(scalingcounter);
     }
 
     //Trigger Coroutines for Specific Enemy (TESTING PURPOSES ONLY)
@@ -298,6 +302,8 @@ public class BattleSystem : MonoBehaviour
         {
             dialougeText.text = "YOU HAVE WON THE BATTLE!";
             soundManager.PlaySFX(soundManager.victorySound);
+            scalingcounter++;
+            Debug.Log("SC INCREASE");
 
         }
         else if (state == BattleState.LOST)
@@ -378,7 +384,6 @@ public class BattleSystem : MonoBehaviour
     //Starts up after the battle is Won
     public IEnumerator NextBattle()
     {
-        
         yield return new WaitForSeconds(2f);
 
         ResourceManagement.Instance.addCoins(enemyUnit.goldRange);
@@ -388,7 +393,8 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        randomNum = Random.Range(1, 3);
+
+        randomNum = Random.Range(1, 4);
 
         dialougeText.text = " ";
 
@@ -417,8 +423,15 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetHP(playerUnit.currentHP);
         enemyHUD.SetHP(enemyUnit.currentHP);
 
-       // state = BattleState.PLAYERTURN;
-       // PlayerTurn();
+        if (scalingcounter % 3 == 0)
+        {
+            enemyUnit.maxHP += 5;
+            enemyUnit.damage += 5;
+            
+        }
+
+        // state = BattleState.PLAYERTURN;
+        // PlayerTurn();
         //  dialougeText.text = "Starting Battle..";
 
 
@@ -512,16 +525,17 @@ public class BattleSystem : MonoBehaviour
 
     //These void function will be the action where the player obtains the item.
 
-    public int statBoostValue = 5;
+    //public int statBoostValue;
 
     public int randomNum;
+    public int coinflip;
 
     public void getAttackItem()
     {
         //This is a placeholder. This code should be able to add up to a current character's attack stat.
         //(i.e. playerUnit.damage += any number
-        dialougeText.text = playerUnit.unitName + " has gained " + statBoostValue + " ATK";
-        playerUnit.damage += statBoostValue;
+        dialougeText.text = playerUnit.unitName + " has gained " + randomNum + " ATK";
+        playerUnit.damage += randomNum;
         soundManager.PlaySFX(soundManager.itemSound);
     }
 
@@ -529,24 +543,32 @@ public class BattleSystem : MonoBehaviour
     {
         //This is a placeholder. This code should be able to add up to a current character's health stat.
         //(i.e. playerUnit.maxHP += any number
-        dialougeText.text = playerUnit.unitName + " has gained " + statBoostValue + " DEF";
-        playerUnit.maxHP += statBoostValue;
+        dialougeText.text = playerUnit.unitName + " has gained " + randomNum + " to their health";
+        playerUnit.maxHP += randomNum;
         soundManager.PlaySFX(soundManager.itemSound);
     }
 
     public void getWildItem()
     {
         //This is a placeholder. Not much has been decided for the wild item yet..
-        dialougeText.text = playerUnit.unitName + " has increased a random stat by " + statBoostValue;
-        if (randomNum == 1)
+        coinflip = Random.Range(1, 3);
+        if (coinflip % 2 == 0)
         {
-            playerUnit.damage += statBoostValue;
+            dialougeText.text = playerUnit.unitName + " has increased a random stat by " + randomNum;
+            if (randomNum == 1)
+            {
+                playerUnit.damage += coinflip;
+            }
+            else if (randomNum >= 2)
+            {
+                playerUnit.maxHP += coinflip;
+            }
+            soundManager.PlaySFX(soundManager.itemSound);
         }
-        else if (randomNum <= 2)
+        else
         {
-            playerUnit.maxHP += statBoostValue;
+            dialougeText.text = "Better luck next time!";
         }
-        soundManager.PlaySFX(soundManager.itemSound);
     }
 
     //These codes will activate once an item has been selected.
