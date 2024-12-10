@@ -165,7 +165,7 @@ public class BattleSystem : MonoBehaviour
     //Use this coroutine for the on the second Trigger enter and above
     public IEnumerator SetupAnotherBattle()
     {
-        GameObject enemyGO = Instantiate(enemies[Random.Range(0,3)], enemyBattlePos.transform.position, Quaternion.identity);
+        GameObject enemyGO = Instantiate(enemies[Random.Range(0,4)], enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 
         dialougeText.text = "A " + enemyUnit.enemyStat.name + " has appeared!";
