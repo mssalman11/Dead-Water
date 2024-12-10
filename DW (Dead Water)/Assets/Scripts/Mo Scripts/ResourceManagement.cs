@@ -13,6 +13,8 @@ public class ResourceManagement : MonoBehaviour
     public int totalCoins;
 
     public GameObject charSelectUI;
+    //Mo Addition
+    //public GameObject itemSelectUI;
 
     private void Awake()
     {
