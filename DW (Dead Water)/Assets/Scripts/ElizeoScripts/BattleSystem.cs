@@ -453,6 +453,7 @@ public class BattleSystem : MonoBehaviour
         //This is a placeholder. This code should be able to add up to a current character's attack stat.
         //(i.e. playerUnit.damage += any number
         dialougeText.text = playerUnit.unitName + " obtained an attack item. (This is a test)";
+        playerUnit.damage += 5;
     }
 
     public void getDefenseItem()
@@ -460,12 +461,14 @@ public class BattleSystem : MonoBehaviour
         //This is a placeholder. This code should be able to add up to a current character's health stat.
         //(i.e. playerUnit.maxHP += any number
         dialougeText.text = playerUnit.unitName + " obtained a defense item. (This is a test)";
+        playerUnit.maxHP += 5;
     }
 
     public void getWildItem()
     {
         //This is a placeholder. Not much has been decided for the wild item yet..
         dialougeText.text = playerUnit.unitName + " obtained a wild item. (This is a test)";
+        playerUnit.damage += 5;
     }
 
     //These codes will activate once an item has been selected.

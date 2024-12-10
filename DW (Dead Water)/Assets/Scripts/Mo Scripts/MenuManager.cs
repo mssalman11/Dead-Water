@@ -12,16 +12,16 @@ public class MenuManager : MonoBehaviour
 
     public void LoadShop()
     {
-        SceneManager.LoadScene("Shop");
+        
     }
 
     public void LoadCharacterMenu()
     {
-        SceneManager.LoadScene("Characters_Leland");
+        
     }
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenus");
+        
     }
 }
