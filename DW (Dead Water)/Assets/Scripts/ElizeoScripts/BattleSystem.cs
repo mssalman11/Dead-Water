@@ -82,16 +82,20 @@ public class BattleSystem : MonoBehaviour
         triggerTest.SetActive(false);
         gameOverUI.SetActive(false);
         continueUI.SetActive(false);
+        ResourceManagement.Instance.itemSelectUI.SetActive(false);
 
 
         //Opens up the character selection first before the level starts
         ResourceManagement.Instance.CharSelection();
 
         damageText.text = " ";
+        dialougeText.text = " ";
 
         //Opens up the SoundManager
         soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManagement>();
         soundManager.traverseSource.Play();
+
+        randomNum = 0;
 
     }
 
@@ -165,7 +169,7 @@ public class BattleSystem : MonoBehaviour
     //Use this coroutine for the on the second Trigger enter and above
     public IEnumerator SetupAnotherBattle()
     {
-        GameObject enemyGO = Instantiate(enemies[Random.Range(0,4)], enemyBattlePos.transform.position, Quaternion.identity);
+        GameObject enemyGO = Instantiate(enemies[Random.Range(0,5)], enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 
         dialougeText.text = "A " + enemyUnit.enemyStat.name + " has appeared!";
@@ -384,15 +388,17 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        //Mo Addition
-        //ResourceManagement.Instance.itemSelectUI.SetActive(true);
+        randomNum = Random.Range(1, 3);
 
-        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
-        ResourceManagement.Instance.isBattleOver();
+        dialougeText.text = " ";
+
+        //Mo Addition
+        ResourceManagement.Instance.itemSelectUI.SetActive(true);
+
+
         incomingBattle = true;
-        StartCoroutine(IntotheNextBattle());
-        soundManager.battleSource.Stop();
-        soundManager.traverseSource.Play();
+        //soundManager.battleSource.Stop();
+        //soundManager.traverseSource.Play();
 
 
         //-------------------------------------
@@ -492,32 +498,55 @@ public class BattleSystem : MonoBehaviour
         ResourceManagement.Instance.nextMove = false;
     }
 
+    public void BattleOVER()
+    {
+        //Turns on the bool in the ResourceManagement scripts, which should help the player stop every trigger.
+        ResourceManagement.Instance.isBattleOver();
+        StartCoroutine(IntotheNextBattle());
+        soundManager.battleSource.Stop();
+        soundManager.traverseSource.Play();
+    }
+
     //Mo Addition
     //These functions will allow the player to go to the next battle after selecting an item.
 
     //These void function will be the action where the player obtains the item.
-    /*
+
+    public int statBoostValue = 5;
+
+    public int randomNum;
+
     public void getAttackItem()
     {
         //This is a placeholder. This code should be able to add up to a current character's attack stat.
         //(i.e. playerUnit.damage += any number
-        dialougeText.text = playerUnit.unitName + " obtained an attack item. (This is a test)";
-        playerUnit.damage += 5;
+        dialougeText.text = playerUnit.unitName + " has gained " + statBoostValue + " ATK";
+        playerUnit.damage += statBoostValue;
+        soundManager.PlaySFX(soundManager.itemSound);
     }
 
     public void getDefenseItem()
     {
         //This is a placeholder. This code should be able to add up to a current character's health stat.
         //(i.e. playerUnit.maxHP += any number
-        dialougeText.text = playerUnit.unitName + " obtained a defense item. (This is a test)";
-        playerUnit.maxHP += 5;
+        dialougeText.text = playerUnit.unitName + " has gained " + statBoostValue + " DEF";
+        playerUnit.maxHP += statBoostValue;
+        soundManager.PlaySFX(soundManager.itemSound);
     }
 
     public void getWildItem()
     {
         //This is a placeholder. Not much has been decided for the wild item yet..
-        dialougeText.text = playerUnit.unitName + " obtained a wild item. (This is a test)";
-        playerUnit.damage += 5;
+        dialougeText.text = playerUnit.unitName + " has increased a random stat by " + statBoostValue;
+        if (randomNum == 1)
+        {
+            playerUnit.damage += statBoostValue;
+        }
+        else if (randomNum <= 2)
+        {
+            playerUnit.maxHP += statBoostValue;
+        }
+        soundManager.PlaySFX(soundManager.itemSound);
     }
 
     //These codes will activate once an item has been selected.
@@ -527,8 +556,9 @@ public class BattleSystem : MonoBehaviour
         getAttackItem();
         yield return new WaitForSeconds(2f);
         dialougeText.text = " ";
-        //BattleOVER();
-        IntotheNextBattle();
+        randomNum = 0;
+        BattleOVER();
+        //IntotheNextBattle();
     }
 
     public IEnumerator defenseItemObtained()
@@ -537,8 +567,9 @@ public class BattleSystem : MonoBehaviour
         getDefenseItem();
         yield return new WaitForSeconds(2f);
         dialougeText.text = " ";
-        //BattleOVER();
-        IntotheNextBattle();
+        randomNum = 0;
+        BattleOVER();
+        //IntotheNextBattle();
     }
 
     public IEnumerator wildItemObtained()
@@ -547,8 +578,9 @@ public class BattleSystem : MonoBehaviour
         getWildItem();
         yield return new WaitForSeconds(2f);
         dialougeText.text = " ";
-        //BattleOVER();
-        IntotheNextBattle();
+        randomNum = 0;
+        BattleOVER();
+        //IntotheNextBattle();
     }
 
     //These will be used on each item button.
@@ -566,7 +598,7 @@ public class BattleSystem : MonoBehaviour
     {
         StartCoroutine(wildItemObtained());
     }
-    */
+    
 }
 
 
