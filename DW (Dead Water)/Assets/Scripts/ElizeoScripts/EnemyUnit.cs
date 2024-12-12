@@ -6,6 +6,9 @@ public class EnemyUnit : MonoBehaviour
 {
     public EnemyBaseScript enemyStat;
 
+    public BattleSystem battleSystem;
+    public GameObject battle;
+
     public string unitName;
     public int level;
 
@@ -27,8 +30,10 @@ public class EnemyUnit : MonoBehaviour
         priority = enemyStat.attackSpeed;
         maxHP = enemyStat.maxHp;
         currentHP = maxHP;
-
+        battle = GameObject.FindGameObjectWithTag("BattleSystemTag");
+        battleSystem = battle.GetComponent<BattleSystem>();
     }
+
     //This function will make sure that any enemy unit takes damage. Needed for the attack function for BattleSystem.
     public bool takeDamage(int dmg)
     {
@@ -64,6 +69,19 @@ public class EnemyUnit : MonoBehaviour
         if (currentHP <= 0)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    public IEnumerator ScaleEnemy()
+    {
+        yield return new WaitForSeconds(0.5f);
+        damage += battleSystem.scaleValue;
+        maxHP += battleSystem.scaleValue;
+        Debug.Log("This enemy has gained " + battleSystem.scaleValue + " ATK and DEF");
+        yield return new WaitForSeconds(1f);
+        if (battleSystem.scalingCounter == 3)
+        {
+            battleSystem.scalingCounter = 0;
         }
     }
 }

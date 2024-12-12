@@ -43,7 +43,8 @@ public class BattleSystem : MonoBehaviour
 
     public Transform playerBattlePos;
     public GameObject enemyBattlePos;
-    private int scalingcounter = 0;
+    public int scalingCounter = 0;
+    public int scaleValue = 0;
 
     //Value for Healing
     [SerializeField] private int healValue;
@@ -173,6 +174,12 @@ public class BattleSystem : MonoBehaviour
         GameObject enemyGO = Instantiate(enemies[Random.Range(0,5)], enemyBattlePos.transform.position, Quaternion.identity);
         enemyUnit = enemyGO.GetComponent<EnemyUnit>();
 
+        if (scalingCounter == 3)
+        {
+            scaleValue += 3;
+        }
+        StartCoroutine(enemyUnit.ScaleEnemy());
+
         dialougeText.text = "A " + enemyUnit.enemyStat.name + " has appeared!";
 
         playerHUD.SetCharHUD(playerUnit);
@@ -194,7 +201,7 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
         Debug.Log(enemyUnit.damage);
         Debug.Log(enemyUnit.maxHP);
-        Debug.Log(scalingcounter);
+        Debug.Log(scalingCounter);
     }
 
     //Trigger Coroutines for Specific Enemy (TESTING PURPOSES ONLY)
@@ -302,7 +309,7 @@ public class BattleSystem : MonoBehaviour
         {
             dialougeText.text = "YOU HAVE WON THE BATTLE!";
             soundManager.PlaySFX(soundManager.victorySound);
-            scalingcounter++;
+            scalingCounter++;
             Debug.Log("SC INCREASE");
 
         }
@@ -391,6 +398,7 @@ public class BattleSystem : MonoBehaviour
         playerHUD.goldText.text = "Gold: " + ResourceManagement.Instance.totalCoins.ToString();
         soundManager.PlaySFX(soundManager.goldSound);
 
+
         yield return new WaitForSeconds(2f);
 
 
@@ -422,13 +430,13 @@ public class BattleSystem : MonoBehaviour
         //Fixes bug that makes the health not show it's increase.
         playerHUD.SetHP(playerUnit.currentHP);
         enemyHUD.SetHP(enemyUnit.currentHP);
+        
+        //if (scalingcounter % 3 == 0)
+        //{
+        //    enemyUnit.maxHP += 5;
+        //    enemyUnit.damage += 5;
 
-        if (scalingcounter % 3 == 0)
-        {
-            enemyUnit.maxHP += 5;
-            enemyUnit.damage += 5;
-            
-        }
+        //}
 
         // state = BattleState.PLAYERTURN;
         // PlayerTurn();
@@ -621,6 +629,7 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(wildItemObtained());
     }
     
+
 }
 
 

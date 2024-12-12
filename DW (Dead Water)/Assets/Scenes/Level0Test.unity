@@ -7255,6 +7255,8 @@ MonoBehaviour:
   incomingBattle: 1
   playerBattlePos: {fileID: 464606754}
   enemyBattlePos: {fileID: 806383262}
+  scalingCounter: 0
+  scaleValue: 0
   healValue: 2
   healingPrice: 1
   playerUnit: {fileID: 0}
