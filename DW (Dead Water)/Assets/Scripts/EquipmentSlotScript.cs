@@ -17,9 +17,6 @@ public class EquipmentSlotScript : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private Text slotName;
 
-    [SerializeField]
-    private Image playerDisplayImage;
-
     //Slot Data
     [SerializeField]
     private ItemType itemType = new ItemType();
@@ -82,10 +79,7 @@ public class EquipmentSlotScript : MonoBehaviour, IPointerClickHandler
 
         //Update Item Data
         this.itemName = itemName;
-        this.itemDescription = itemDescription;
-
-        //Update Display Image
-        playerDisplayImage.sprite = itemSprite; 
+        this.itemDescription = itemDescription; 
 
         //Update Character Stats in equip menu
         for(int i = 0; i < equipmentSOLibrary.itemScriptableObject.Length; i++)

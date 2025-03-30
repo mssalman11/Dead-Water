@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyBaseScript : ScriptableObject
 {
     //Character Name
-    [SerializeField] string name;
+    [SerializeField] public string name; //Made to public by Elizeo Nava
 
     //Character Description
     [TextArea]
@@ -17,12 +17,12 @@ public class EnemyBaseScript : ScriptableObject
     //public GameObject characterModel;
 
     //Base stats
-    [SerializeField] float maxHp;
-    [SerializeField] float attack;
-    [SerializeField] float attackSpeed;
+    [SerializeField] public int maxHp; //Originally a float, turned into Int by Elizeo Nava
+    [SerializeField] public int attack;//^^
+    [SerializeField] public float attackSpeed;
     //Resources
-    [SerializeField] int gold;
-    [SerializeField] float xp;
+    [SerializeField] public int gold;
+    [SerializeField] public float xp;
 
 
     public string Name
